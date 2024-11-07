@@ -1,9 +1,8 @@
 class_name MusicManager extends Node
 
-@export var music_bus_volume:=-9.0
+@export var music_bus_volume:=0.0
 @onready var menu_music: AudioStreamPlayer = $menu_music
 @onready var game_music: AudioStreamPlayer = $game_music
-@onready var murder_music: AudioStreamPlayer = $murder_music
 
 
 @onready var game_music_stream:AudioStreamSynchronized = game_music.stream
@@ -21,13 +20,6 @@ func fade_in_game_music(time:float=1.0):
 func fade_game_music(time:float=1.0):
 	fade_stream(game_music, time)
 
-
-func fade_in_murder_music(time:float=1.0):
-	fade_in_stream(murder_music, time)
-
-func fade_murder_music(time:float=1.0):
-	fade_stream(murder_music, time)
-		
 func play_music(node:AudioStreamPlayer):
 	if not node.playing:
 		node.play()

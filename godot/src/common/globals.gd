@@ -11,7 +11,7 @@ var config:ConfigFile
 
 var debug_build := false
 var in_game:=false
-var in_dialogue:=false
+
 
 var music_on:=true:
 	set(v):
@@ -38,11 +38,10 @@ func _ready():
 	Logger.info("Starting menu music")
 	music_manager.fade_in_menu_music()
 
-	#start_game()
+	#start_game() #uncomment when we have start screen
 	
 func start_game():
 	in_game=true
-
 	
 	music_manager.fade_menu_music()
 	await get_tree().create_timer(1).timeout
