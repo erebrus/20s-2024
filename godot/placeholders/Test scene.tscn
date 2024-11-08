@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://d4mejcu3ayh5b"]
+
+[ext_resource type="PackedScene" uid="uid://dupwcuyibklnd" path="res://src/game/interactable_prototype.tscn" id="1_dbjfr"]
+[ext_resource type="Script" path="res://src/game/time_display.gd" id="1_s6hqd"]
+[ext_resource type="Script" path="res://src/game/CameraController.gd" id="2_eep4l"]
+[ext_resource type="Texture2D" uid="uid://dimff1od4rpqq" path="res://placeholders/gfx/big-red-button-3d-model-obj-mtl-fbx-blend-pdf.jpg" id="3_0c3aw"]
+[ext_resource type="Script" path="res://src/game/RonaldCrump.gd" id="4_em8ol"]
+[ext_resource type="Texture2D" uid="uid://7ah71eomo6dg" path="res://placeholders/gfx/donald-trump-cartoon-vector-9631129.jpg" id="5_liane"]
+[ext_resource type="AudioStream" uid="uid://bnmmniaj0546m" path="res://placeholders/sfx/donald-trump-tts-file.mp3" id="6_aexa8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5c6lq"]
+font_size = 30
+
+[node name="TestScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="OverlayCanvas" type="CanvasLayer" parent="."]
+
+[node name="TimeDisplay" type="Label" parent="OverlayCanvas"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -66.0
+offset_top = 27.0
+offset_right = -26.0
+offset_bottom = 50.0
+grow_horizontal = 0
+text = "123"
+label_settings = SubResource("LabelSettings_5c6lq")
+script = ExtResource("1_s6hqd")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("2_eep4l")
+
+[node name="InteractablePrototype" parent="." instance=ExtResource("1_dbjfr")]
+draggable = true
+
+[node name="BigBeautifulButton" type="Sprite2D" parent="."]
+position = Vector2(47, 318)
+scale = Vector2(0.113333, 0.113333)
+texture = ExtResource("3_0c3aw")
+
+[node name="Crump2" type="Node2D" parent="." node_paths=PackedStringArray("button")]
+position = Vector2(2808, 361)
+script = ExtResource("4_em8ol")
+button = NodePath("../BigBeautifulButton")
+
+[node name="Sprite2D" type="Sprite2D" parent="Crump2"]
+position = Vector2(-3, -66)
+scale = Vector2(0.181429, 0.181429)
+texture = ExtResource("5_liane")
+
+[node name="Donald-trump-tts-file" type="AudioStreamPlayer2D" parent="Crump2"]
+stream = ExtResource("6_aexa8")
+autoplay = true
