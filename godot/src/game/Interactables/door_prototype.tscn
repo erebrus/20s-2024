@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjxgpaeabhmy2"]
+
+[ext_resource type="Texture2D" uid="uid://krnvwcvjjm8v" path="res://icon.svg" id="1_t4l74"]
+[ext_resource type="Script" path="res://src/game/Interactable.gd" id="2_4lgx6"]
+[ext_resource type="Script" path="res://src/game/shadow.gd" id="3_grmg3"]
+[ext_resource type="Script" path="res://src/game/open_door_on_interact.gd" id="4_ycqy6"]
+
+[node name="door_prototype" type="Node2D"]
+script = ExtResource("2_4lgx6")
+interactable_name = "item1"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -32.0
+offset_top = -184.0
+offset_right = 32.0
+offset_bottom = 7.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -88)
+scale = Vector2(0.5, 1.5)
+texture = ExtResource("1_t4l74")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.329412)
+position = Vector2(-2, -88)
+scale = Vector2(0.5, 1.5)
+texture = ExtResource("1_t4l74")
+script = ExtResource("3_grmg3")
+
+[node name="OpenDoorOnInteract" type="Node2D" parent="." node_paths=PackedStringArray("nav_link_to_toggle")]
+position = Vector2(-2, -56)
+script = ExtResource("4_ycqy6")
+nav_link_to_toggle = NodePath("../NavigationLink2D")
+is_door_open = true
+
+[node name="NavigationLink2D" type="NavigationLink2D" parent="."]
+top_level = true
+enabled = false
+start_position = Vector2(-150, 0)
+end_position = Vector2(150, 0)

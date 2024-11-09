@@ -2,28 +2,28 @@ class_name Shadow
 extends Sprite2D
 
 var pickupTween: Tween
-var parent: Interactable
+var parent_interactable: Interactable
 
 const PICKUP_OFFSET := Vector2(-20,20)
 const HOVER_OFFSET := Vector2(-10,10)
 const TWEEN_DURATION := .1
 
-func _ready() -> void:
-	parent = get_parent()
+var starting_position : Vector2
 
-	if parent is Interactable:
-		await parent.ready
-		parent.OnGrabbed.connect(picked_up)
-		parent.OnDropped.connect(dropped)
-		parent.control.mouse_entered.connect(hovered)
-		parent.control.mouse_exited.connect(de_hovered)
+func initialise(interactable: Interactable):
+	parent_interactable = interactable
+	parent_interactable.OnGrabbed.connect(picked_up)
+	parent_interactable.OnDropped.connect(dropped)
+	parent_interactable.control.mouse_entered.connect(hovered)
+	parent_interactable.control.mouse_exited.connect(de_hovered)
+	starting_position = position
 
 func hovered():
-	if parent.draggable:
+	if parent_interactable.draggable:
 		tween_to_position(HOVER_OFFSET)
 
 func de_hovered():
-	tween_to_position(Vector2.ZERO)
+	tween_to_position(starting_position)
 
 func picked_up():
 	tween_to_position(PICKUP_OFFSET)

@@ -19,7 +19,7 @@ var music_on:=true:
 		Logger.info("music %s" % [music_on])
 		var sfx_index= AudioServer.get_bus_index("Music")
 		AudioServer.set_bus_volume_db(sfx_index, music_manager.music_bus_volume if music_on else -60)
-	
+
 
 var sound_on:=true:
 	set(v):
@@ -27,7 +27,7 @@ var sound_on:=true:
 		Logger.info("sound %s" % [sound_on])
 		var sfx_index= AudioServer.get_bus_index("Sound")
 		AudioServer.set_bus_volume_db(sfx_index, 0 if sound_on else -60)
-	
+
 
 @onready var music_manager: MusicManager = $MusicManager
 
@@ -39,21 +39,21 @@ func _ready():
 	music_manager.fade_in_menu_music()
 
 	#start_game() #uncomment when we have start screen
-	
+
 func start_game():
 	in_game=true
-	
+
 	music_manager.fade_menu_music()
 	await get_tree().create_timer(1).timeout
 	music_manager.reset_synchronized_stream()
 
 	get_tree().change_scene_to_file(GAME_SCENE_PATH)
 	music_manager.fade_in_game_music()
-	
-	
 
 
-	
+
+
+
 func _init_logger():
 	Logger.set_logger_level(Logger.LOG_LEVEL_INFO)
 	Logger.set_logger_format(Logger.LOG_FORMAT_MORE)
