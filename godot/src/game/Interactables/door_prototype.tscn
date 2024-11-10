@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjxgpaeabhmy2"]
+[gd_scene load_steps=6 format=3 uid="uid://cjxgpaeabhmy2"]
 
 [ext_resource type="Texture2D" uid="uid://krnvwcvjjm8v" path="res://icon.svg" id="1_t4l74"]
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="2_4lgx6"]
 [ext_resource type="Script" path="res://src/game/shadow.gd" id="3_grmg3"]
-[ext_resource type="Script" path="res://src/game/open_door_on_interact.gd" id="4_ycqy6"]
+[ext_resource type="Script" path="res://src/game/InteractComponents/open_door_on_interact.gd" id="4_ycqy6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6k2h"]
+size = Vector2(67, 196)
 
 [node name="door_prototype" type="Node2D"]
 script = ExtResource("2_4lgx6")
-interactable_name = "item1"
+interactable_name = "Door"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -35,9 +38,18 @@ position = Vector2(-2, -56)
 script = ExtResource("4_ycqy6")
 nav_link_to_toggle = NodePath("../NavigationLink2D")
 is_door_open = true
+require_item_to_interact = true
+possible_items_needed_for_interaction = Array[String](["Door Key"])
+destroy_other_on_use = true
 
 [node name="NavigationLink2D" type="NavigationLink2D" parent="."]
 top_level = true
 enabled = false
 start_position = Vector2(-150, 0)
 end_position = Vector2(150, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -89)
+shape = SubResource("RectangleShape2D_c6k2h")

@@ -70,4 +70,6 @@ func do_lose():
 	get_tree().quit()
 
 func do_win():
+	Events.OnWinGame.emit()
+	await get_tree().create_timer(5).timeout
 	get_tree().quit()

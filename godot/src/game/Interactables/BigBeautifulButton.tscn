@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://cywcur4k68hdr"]
+
+[ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_lsihm"]
+[ext_resource type="Texture2D" uid="uid://dimff1od4rpqq" path="res://placeholders/gfx/big-red-button-3d-model-obj-mtl-fbx-blend-pdf.jpg" id="2_rw1ev"]
+[ext_resource type="Script" path="res://src/game/shadow.gd" id="3_d8o3v"]
+[ext_resource type="Script" path="res://src/game/InteractComponents/change_name_on_interaction.gd" id="4_d4q8o"]
+[ext_resource type="Script" path="res://src/game/InteractComponents/replace_on_interact.gd" id="5_jbcpc"]
+[ext_resource type="PackedScene" uid="uid://epvtpumtqke3" path="res://src/game/Interactables/static paper with button drawn on it .tscn" id="6_7oevq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pf2uh"]
+size = Vector2(181, 178)
+
+[node name="Big Beautiful Button" type="Node2D"]
+script = ExtResource("1_lsihm")
+interactable_name = "Big Beautiful Button"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -63.0
+offset_top = -63.0
+offset_right = 64.0
+offset_bottom = 63.0
+
+[node name="Shadow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.329412)
+texture = ExtResource("2_rw1ev")
+script = ExtResource("3_d8o3v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rw1ev")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_pf2uh")
+
+[node name="RenameOnSticker" type="Node2D" parent="."]
+script = ExtResource("4_d4q8o")
+new_name = "Big Beautiful Chinese Button"
+require_item_to_interact = true
+possible_items_needed_for_interaction = Array[String](["Made in China Sticker"])
+destroy_other_on_use = true
+
+[node name="ReplaceOnDrawnButton" type="Node2D" parent="."]
+script = ExtResource("5_jbcpc")
+packed_scene_to_replace_with = ExtResource("6_7oevq")
+require_item_to_interact = true
+possible_items_needed_for_interaction = Array[String](["Crudely Drawn Button"])
+destroy_other_on_use = true

@@ -27,6 +27,14 @@ Logger="*res://addons/gs_logger/logger.gd"
 
 enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/gs_logger/plugin.cfg", "res://addons/xsm/plugin.cfg")
 
+[global_group]
+
+Crump=""
+
+[gui]
+
+timers/tooltip_delay_sec=0.0
+
 [input]
 
 move_right={

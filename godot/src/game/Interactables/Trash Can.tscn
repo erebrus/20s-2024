@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpcdh4q1ef5np"]
+[gd_scene load_steps=7 format=3 uid="uid://dpcdh4q1ef5np"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_nefc5"]
 [ext_resource type="Texture2D" uid="uid://b3gcyi84ykavu" path="res://placeholders/gfx/bin.png" id="2_vcryr"]
 [ext_resource type="Script" path="res://src/game/shadow.gd" id="3_l5bv6"]
+[ext_resource type="Script" path="res://src/game/InteractComponents/spawn_item_on_interact.gd" id="4_54onp"]
+[ext_resource type="PackedScene" uid="uid://bpvgl2rkfitj5" path="res://src/game/Interactables/Made In China Sticker.tscn" id="5_84f0b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_garpc"]
 size = Vector2(117, 166)
@@ -10,6 +12,7 @@ size = Vector2(117, 166)
 [node name="Trash Can" type="Node2D"]
 script = ExtResource("1_nefc5")
 interactable_name = "Trash Can"
+draggable = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -29,6 +32,8 @@ script = ExtResource("3_l5bv6")
 texture = ExtResource("2_vcryr")
 
 [node name="SpawnItemOnInteract" type="Node2D" parent="."]
+script = ExtResource("4_54onp")
+packed_scene_to_spawn = ExtResource("5_84f0b")
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cko6w8bt6ryxp"]
+
+[ext_resource type="Script" path="res://src/game/RonaldCrump.gd" id="1_xpida"]
+[ext_resource type="AudioStream" uid="uid://b4jet2t7mshnv" path="res://placeholders/sfx/China button trump.mp3" id="2_i0pml"]
+[ext_resource type="Texture2D" uid="uid://7ah71eomo6dg" path="res://placeholders/gfx/donald-trump-cartoon-vector-9631129.jpg" id="2_sv3n3"]
+[ext_resource type="AudioStream" uid="uid://bnmmniaj0546m" path="res://placeholders/sfx/donald-trump-tts-file.mp3" id="3_fqd1r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_074sm"]
+size = Vector2(130, 178)
+
+[node name="Crump" type="Node2D" groups=["Crump"]]
+script = ExtResource("1_xpida")
+made_in_china_line = ExtResource("2_i0pml")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, -66)
+scale = Vector2(0.181429, 0.181429)
+texture = ExtResource("2_sv3n3")
+
+[node name="VoicePlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_fqd1r")
+volume_db = -8.05
+autoplay = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3, -76)
+shape = SubResource("RectangleShape2D_074sm")

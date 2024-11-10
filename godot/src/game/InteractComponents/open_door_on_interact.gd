@@ -9,11 +9,11 @@ func _ready() -> void:
 	_door_state_changed()
 
 func on_interacted():
-	super.on_interacted()
 	is_door_open = !is_door_open
 	_door_state_changed()
 	if one_shot:
 		parent_interactable.interactable = false
+	super.on_interacted()
 
 func _door_state_changed():
 	nav_link_to_toggle.enabled = is_door_open

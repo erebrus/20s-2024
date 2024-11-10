@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://4l6y72w2g6cb"]
+
+[ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_e6hh3"]
+[ext_resource type="Texture2D" uid="uid://d2jfxoj4kdlt1" path="res://placeholders/gfx/paper.png" id="2_bgkkx"]
+[ext_resource type="Script" path="res://src/game/shadow.gd" id="3_b0hwh"]
+[ext_resource type="Script" path="res://src/game/InteractComponents/replace_on_interact.gd" id="4_5prg7"]
+[ext_resource type="PackedScene" uid="uid://dbsbdt7rfgi37" path="res://src/game/Interactables/paper with button drawn on it.tscn" id="5_mt28b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
+size = Vector2(126, 179)
+
+[node name="Paper" type="Node2D"]
+script = ExtResource("1_e6hh3")
+interactable_name = "Paper"
+draggable = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -73.0
+offset_top = -103.0
+offset_right = 81.0
+offset_bottom = 101.0
+
+[node name="Shadow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.329412)
+texture = ExtResource("2_bgkkx")
+script = ExtResource("3_b0hwh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bgkkx")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3, -4.5)
+shape = SubResource("RectangleShape2D_ga48g")
+
+[node name="ReplaceOnInteract" type="Node2D" parent="."]
+script = ExtResource("4_5prg7")
+packed_scene_to_replace_with = ExtResource("5_mt28b")
+require_item_to_interact = true
+possible_items_needed_for_interaction = Array[String](["Pen"])

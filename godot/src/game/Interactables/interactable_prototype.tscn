@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b3gcyi84ykavu" path="res://placeholders/gfx/bin.png" id="2_nk5xb"]
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="2_v48vp"]
 [ext_resource type="Script" path="res://src/game/shadow.gd" id="3_5v1ab"]
-[ext_resource type="Script" path="res://src/game/change_type_on_interact.gd" id="4_xix3j"]
+[ext_resource type="Script" path="res://src/game/InteractComponents/replace_on_interact.gd" id="4_xix3j"]
 [ext_resource type="PackedScene" uid="uid://vcxcd4qmuc4b" path="res://src/game/Interactables/interactable_prototype2.tscn" id="5_vsj6a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]

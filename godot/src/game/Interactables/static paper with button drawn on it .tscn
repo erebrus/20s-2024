@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://epvtpumtqke3"]
+
+[ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_emaqu"]
+[ext_resource type="Texture2D" uid="uid://ca8fnd7glniop" path="res://placeholders/gfx/paper with button drawn on it.png" id="2_0p5b3"]
+[ext_resource type="Script" path="res://src/game/shadow.gd" id="3_3hjlw"]
+[ext_resource type="Script" path="res://src/game/Interactables/make_new_destination_for_crump.gd" id="4_gv72y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
+size = Vector2(126, 179)
+
+[node name="static Crudely Drawn Button" type="Node2D"]
+script = ExtResource("1_emaqu")
+interactable_name = "Crudely Drawn Button"
+interactable = false
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -73.0
+offset_top = -103.0
+offset_right = 81.0
+offset_bottom = 101.0
+
+[node name="Shadow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.329412)
+texture = ExtResource("2_0p5b3")
+script = ExtResource("3_3hjlw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0p5b3")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3, -4.5)
+shape = SubResource("RectangleShape2D_ga48g")
+
+[node name="MakeNewDestinationForCrump" type="Node2D" parent="."]
+script = ExtResource("4_gv72y")
