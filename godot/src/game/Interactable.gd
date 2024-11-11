@@ -72,10 +72,13 @@ func try_interact_with_item(item_that_is_interacting_with_me: Interactable):
 
 func _mouse_entered() -> void:
 #TODO	we can add a controller when we start building a level and we need to seperate interactables into different parents
-	get_parent().move_child(self, -1)
+	if CurrentGrabbed != null:
+		return
+
 	isMouseOver = true
 	if interactable:
 		highlight()
+
 		if draggable:
 			tween_to_rotation(PI/20, .1)
 
@@ -86,6 +89,7 @@ func _mouse_exited() -> void:
 		tween_to_rotation(0, .1)
 
 func highlight():
+	get_parent().move_child(self, -1)
 	tween_to_scale(HIGHLIGHT_SCALE)
 
 func de_highlight():

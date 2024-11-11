@@ -12,6 +12,7 @@ var config:ConfigFile
 var debug_build := false
 var in_game:=false
 
+var crump: RonaldCrump
 
 var music_on:=true:
 	set(v):

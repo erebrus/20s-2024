@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4a58iode7wuh"]
+
+[ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_b58tq"]
+[ext_resource type="Script" path="res://src/game/InteractComponents/replace_on_interact.gd" id="5_pc3nw"]
+[ext_resource type="PackedScene" uid="uid://epvtpumtqke3" path="res://src/game/Interactables/crudely_drawn_button_replacement.tscn" id="6_pwjs7"]
+
+[sub_resource type="Gradient" id="Gradient_el5wa"]
+offsets = PackedFloat32Array(0, 0.508333, 1)
+colors = PackedColorArray(0.517647, 0.517647, 0.517647, 0.584314, 0.364706, 0.364706, 0.364706, 0.482353, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_om3nw"]
+gradient = SubResource("Gradient_el5wa")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.6, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5gqln"]
+size = Vector2(64, 33)
+
+[node name="MissingButton" type="Node2D"]
+script = ExtResource("1_b58tq")
+interactable_name = "Missing Button"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -31.0
+offset_top = -19.0
+offset_right = 33.0
+offset_bottom = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+scale = Vector2(2.53125, 1.22607)
+texture = SubResource("GradientTexture2D_om3nw")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(2, -52)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 47.5)
+shape = SubResource("RectangleShape2D_5gqln")
+
+[node name="ReplaceOnDrawnButton" type="Node2D" parent="."]
+position = Vector2(2, -52)
+script = ExtResource("5_pc3nw")
+packed_scene_to_replace_with = ExtResource("6_pwjs7")
+require_item_to_interact = true
+possible_items_needed_for_interaction = Array[String](["Crudely Drawn Button"])
+destroy_other_on_use = true

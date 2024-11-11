@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://4l6y72w2g6cb"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_e6hh3"]
-[ext_resource type="Texture2D" uid="uid://d2jfxoj4kdlt1" path="res://placeholders/gfx/paper.png" id="2_bgkkx"]
+[ext_resource type="Texture2D" uid="uid://d2jfxoj4kdlt1" path="res://placeholders/gfx/placeholder_paper.png" id="2_bgkkx"]
 [ext_resource type="Script" path="res://src/game/shadow.gd" id="3_b0hwh"]
 [ext_resource type="Script" path="res://src/game/InteractComponents/replace_on_interact.gd" id="4_5prg7"]
-[ext_resource type="PackedScene" uid="uid://dbsbdt7rfgi37" path="res://src/game/Interactables/paper with button drawn on it.tscn" id="5_mt28b"]
+[ext_resource type="PackedScene" uid="uid://dbsbdt7rfgi37" path="res://src/game/Interactables/crudely_drawn_button.tscn" id="5_mt28b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
 size = Vector2(126, 179)

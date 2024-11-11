@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://b40htq4kroxih"]
+
+[ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_26er3"]
+[ext_resource type="Texture2D" uid="uid://dt0e316eyvjr7" path="res://placeholders/gfx/placeholder_telephone.png" id="2_hpipw"]
+[ext_resource type="Script" path="res://src/game/shadow.gd" id="3_ih506"]
+[ext_resource type="Script" path="res://src/game/InteractComponents/play_audio_on_interact.gd" id="4_xkanw"]
+[ext_resource type="AudioStream" uid="uid://bqsr7l4c8k707" path="res://placeholders/sfx/biden_phone_call_audio.mp3" id="5_jcpkx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
+size = Vector2(148, 173)
+
+[node name="WhitehousePhone" type="Node2D"]
+script = ExtResource("1_26er3")
+interactable_name = "Whitehouse Phone"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -63.0
+offset_top = -79.0
+offset_right = 76.0
+offset_bottom = 81.0
+
+[node name="Shadow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.329412)
+texture = ExtResource("2_hpipw")
+script = ExtResource("3_ih506")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hpipw")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3, 6.5)
+shape = SubResource("RectangleShape2D_ga48g")
+
+[node name="CallBiden" type="Node2D" parent="."]
+script = ExtResource("4_xkanw")
+audio_to_play = ExtResource("5_jcpkx")
+require_item_to_interact = true
+possible_items_needed_for_interaction = Array[String](["Biden's Phone Number"])
+destroy_other_on_use = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CallBiden"]
+bus = &"Sound"

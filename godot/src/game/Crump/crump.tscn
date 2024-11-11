@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cko6w8bt6ryxp"]
+[gd_scene load_steps=9 format=3 uid="uid://cko6w8bt6ryxp"]
 
 [ext_resource type="Script" path="res://src/game/RonaldCrump.gd" id="1_xpida"]
-[ext_resource type="AudioStream" uid="uid://b4jet2t7mshnv" path="res://placeholders/sfx/China button trump.mp3" id="2_i0pml"]
-[ext_resource type="Texture2D" uid="uid://7ah71eomo6dg" path="res://placeholders/gfx/donald-trump-cartoon-vector-9631129.jpg" id="2_sv3n3"]
-[ext_resource type="AudioStream" uid="uid://bnmmniaj0546m" path="res://placeholders/sfx/donald-trump-tts-file.mp3" id="3_fqd1r"]
+[ext_resource type="AudioStream" uid="uid://b4jet2t7mshnv" path="res://placeholders/sfx/placeholder_trump_chinese_button.mp3" id="2_i0pml"]
+[ext_resource type="Texture2D" uid="uid://7ah71eomo6dg" path="res://placeholders/gfx/placeholder_ronald_crump.jpg" id="2_sv3n3"]
+[ext_resource type="AudioStream" uid="uid://bnmmniaj0546m" path="res://placeholders/sfx/placeholder_trump_walking.mp3" id="3_fqd1r"]
+[ext_resource type="AudioStream" uid="uid://cy8iip0lp41ou" path="res://placeholders/sfx/placeholder_fake_button.mp3" id="3_yvn8o"]
+[ext_resource type="Script" path="res://src/game/InteractComponents/trigger_trump_voice_line_on_interact.gd" id="5_d403u"]
+[ext_resource type="AudioStream" uid="uid://ddk6xth2csrhj" path="res://placeholders/sfx/placeholder_try_gun_on_trump.mp3" id="6_nesmu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_074sm"]
 size = Vector2(130, 178)
@@ -11,6 +14,16 @@ size = Vector2(130, 178)
 [node name="Crump" type="Node2D" groups=["Crump"]]
 script = ExtResource("1_xpida")
 made_in_china_line = ExtResource("2_i0pml")
+crudely_drawn_button_line = ExtResource("3_yvn8o")
+interactable_name = "Ronald Crump"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -64.0
+offset_top = -154.0
+offset_right = 58.0
+offset_bottom = 24.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-3, -66)
@@ -21,6 +34,7 @@ texture = ExtResource("2_sv3n3")
 stream = ExtResource("3_fqd1r")
 volume_db = -8.05
 autoplay = true
+bus = &"Sound"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
@@ -30,3 +44,10 @@ debug_enabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-3, -76)
 shape = SubResource("RectangleShape2D_074sm")
+
+[node name="ChangeVoiceLineGun" type="Node2D" parent="."]
+script = ExtResource("5_d403u")
+voice_line_to_play = ExtResource("6_nesmu")
+require_item_to_interact = true
+possible_items_needed_for_interaction = Array[String](["Gun"])
+destroy_other_on_use = true

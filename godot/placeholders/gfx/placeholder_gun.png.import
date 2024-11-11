@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7ah71eomo6dg"
-path="res://.godot/imported/donald-trump-cartoon-vector-9631129.jpg-7493e2b4c55a7ecd4b7031edd43f8827.ctex"
+uid="uid://bvg85ckga4wle"
+path="res://.godot/imported/placeholder_gun.png-c1930ce69b8420661c4390a90711c8b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://placeholders/gfx/donald-trump-cartoon-vector-9631129.jpg"
-dest_files=["res://.godot/imported/donald-trump-cartoon-vector-9631129.jpg-7493e2b4c55a7ecd4b7031edd43f8827.ctex"]
+source_file="res://placeholders/gfx/placeholder_gun.png"
+dest_files=["res://.godot/imported/placeholder_gun.png-c1930ce69b8420661c4390a90711c8b9.ctex"]
 
 [params]
 

@@ -1,22 +1,21 @@
 class_name RonaldCrump
-extends Node2D
+extends Interactable
 
 @export var button: Interactable
 
-var moveSpeed := 150.0
-const distanceFromButtonForGameOver := 100.0
+var _moveSpeed := 150.0
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
-@onready var area_2d: Area2D = $Area2D
 @onready var voice_player: AudioStreamPlayer2D = $VoicePlayer
-var position_last_frame : Vector2
-
 var pause_movement := false
 
 @export_group("Voice Lines")
 @export var made_in_china_line: AudioStream
 @export var crudely_drawn_button_line: AudioStream
+@export var missing_button_line: AudioStream
 
 func _ready() -> void:
+	super._ready()
+	Globals.crump = self
 	navigation_agent_2d.target_position = button.global_position
 	area_2d.area_entered.connect(_on_area_2d_area_entered)
 
@@ -24,27 +23,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if pause_movement:
 		return
-	position_last_frame = global_position
-	global_position = global_position.move_toward(navigation_agent_2d.get_next_path_position(),moveSpeed * delta)
+	global_position = global_position.move_toward(navigation_agent_2d.get_next_path_position(),_moveSpeed * delta)
 
-
-
-func on_reached_button():
-
-
-	if button.interactable_name == "Big Beautiful Chinese Button" and voice_player.stream != made_in_china_line:
-		await change_voice_line(made_in_china_line)
-		pause_movement = true
-		await voice_player.finished
-		Globals.do_win()
-		return
-	if button.interactable_name == "Crudely Drawn Button" and voice_player.stream != made_in_china_line:
-		await change_voice_line(crudely_drawn_button_line)
-		pause_movement = true
-		await voice_player.finished
-		Globals.do_win()
-		return
-	Globals.do_lose()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	var interacable_hit := area.get_parent()
@@ -53,6 +33,32 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			on_reached_button()
 			return
 
+
+func on_reached_button():
+	if button.interactable_name == "Big Beautiful Chinese Button":
+		trigger_win(made_in_china_line)
+		return
+	if button.interactable_name == "Crudely Drawn Button" :
+		trigger_lose(crudely_drawn_button_line)
+		return
+	if button.interactable_name == "Missing Button" :
+		trigger_lose(missing_button_line)
+		return
+	Globals.do_lose()
+
+
+func trigger_win(voice_line: AudioStream):
+	await change_voice_line(voice_line)
+	pause_movement = true
+	await voice_player.finished
+	Globals.do_win()
+
+
+func trigger_lose(voice_line: AudioStream):
+	await change_voice_line(voice_line)
+	pause_movement = true
+	await voice_player.finished
+	Globals.do_lose()
 
 
 var audiostream_volume_tween: Tween

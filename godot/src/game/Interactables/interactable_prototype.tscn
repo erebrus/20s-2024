@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dupwcuyibklnd"]
+[gd_scene load_steps=5 format=3 uid="uid://dupwcuyibklnd"]
 
-[ext_resource type="Texture2D" uid="uid://b3gcyi84ykavu" path="res://placeholders/gfx/bin.png" id="2_nk5xb"]
+[ext_resource type="Texture2D" uid="uid://b3gcyi84ykavu" path="res://placeholders/gfx/placeholder_bin.png" id="2_nk5xb"]
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="2_v48vp"]
 [ext_resource type="Script" path="res://src/game/shadow.gd" id="3_5v1ab"]
-[ext_resource type="Script" path="res://src/game/InteractComponents/replace_on_interact.gd" id="4_xix3j"]
-[ext_resource type="PackedScene" uid="uid://vcxcd4qmuc4b" path="res://src/game/Interactables/interactable_prototype2.tscn" id="5_vsj6a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
 size = Vector2(117, 166)
@@ -29,10 +27,6 @@ script = ExtResource("3_5v1ab")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_nk5xb")
-
-[node name="ChangeTypeOnInteract" type="Node2D" parent="."]
-script = ExtResource("4_xix3j")
-packed_scene_to_replace_with = ExtResource("5_vsj6a")
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c6k2h"]
 size = Vector2(67, 196)
 
-[node name="door_prototype" type="Node2D"]
+[node name="DoorPrototype" type="Node2D"]
 script = ExtResource("2_4lgx6")
 interactable_name = "Door"
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ucbw0l1g0lpe"
-path="res://.godot/imported/key.png-f2fba523304900aaf9414672c3d34403.ctex"
+uid="uid://d3lnhk2b2tvis"
+path="res://.godot/imported/placeholder_bidens_phone_number.png-692b7237953ece663fb582f59bd54e1e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://placeholders/gfx/key.png"
-dest_files=["res://.godot/imported/key.png-f2fba523304900aaf9414672c3d34403.ctex"]
+source_file="res://placeholders/gfx/placeholder_bidens_phone_number.png"
+dest_files=["res://.godot/imported/placeholder_bidens_phone_number.png-692b7237953ece663fb582f59bd54e1e.ctex"]
 
 [params]
 

@@ -1,17 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://wpc5ikfef6hm"]
+[gd_scene load_steps=5 format=3 uid="uid://wpc5ikfef6hm"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_p5gb4"]
-[ext_resource type="Texture2D" uid="uid://ucbw0l1g0lpe" path="res://placeholders/gfx/key.png" id="2_4u6pd"]
+[ext_resource type="Texture2D" uid="uid://ucbw0l1g0lpe" path="res://placeholders/gfx/placeholder_key.png" id="2_4u6pd"]
 [ext_resource type="Script" path="res://src/game/shadow.gd" id="3_6i517"]
-[ext_resource type="Script" path="res://src/game/InteractComponents/replace_on_interact.gd" id="4_52lrp"]
-[ext_resource type="PackedScene" uid="uid://vcxcd4qmuc4b" path="res://src/game/Interactables/interactable_prototype2.tscn" id="5_vjddg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
 size = Vector2(39, 78)
 
 [node name="Key" type="Node2D"]
 script = ExtResource("1_p5gb4")
-interactable_name = "Door Key"
+interactable_name = "Bookshelf Key"
 draggable = true
 
 [node name="Control" type="Control" parent="."]
@@ -30,10 +28,6 @@ script = ExtResource("3_6i517")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_4u6pd")
-
-[node name="ChangeTypeOnInteract" type="Node2D" parent="."]
-script = ExtResource("4_52lrp")
-packed_scene_to_replace_with = ExtResource("5_vjddg")
 
 [node name="Area2D" type="Area2D" parent="."]
 

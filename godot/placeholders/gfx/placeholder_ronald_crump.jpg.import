@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca8fnd7glniop"
-path="res://.godot/imported/paper with button drawn on it.png-8b2dea436edcad466d250a408dfd9246.ctex"
+uid="uid://7ah71eomo6dg"
+path="res://.godot/imported/placeholder_ronald_crump.jpg-33472c0b559e7c7e3099514dc770a3c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://placeholders/gfx/paper with button drawn on it.png"
-dest_files=["res://.godot/imported/paper with button drawn on it.png-8b2dea436edcad466d250a408dfd9246.ctex"]
+source_file="res://placeholders/gfx/placeholder_ronald_crump.jpg"
+dest_files=["res://.godot/imported/placeholder_ronald_crump.jpg-33472c0b559e7c7e3099514dc770a3c5.ctex"]
 
 [params]
 

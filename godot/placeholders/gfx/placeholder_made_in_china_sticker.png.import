@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dimff1od4rpqq"
-path="res://.godot/imported/big-red-button-3d-model-obj-mtl-fbx-blend-pdf.jpg-ff6c6cc6becc811877a7d13fdff24453.ctex"
+uid="uid://cduh7evd7000c"
+path="res://.godot/imported/placeholder_made_in_china_sticker.png-c4191a5b335afa5dc38c616b088bcb37.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://placeholders/gfx/big-red-button-3d-model-obj-mtl-fbx-blend-pdf.jpg"
-dest_files=["res://.godot/imported/big-red-button-3d-model-obj-mtl-fbx-blend-pdf.jpg-ff6c6cc6becc811877a7d13fdff24453.ctex"]
+source_file="res://placeholders/gfx/placeholder_made_in_china_sticker.png"
+dest_files=["res://.godot/imported/placeholder_made_in_china_sticker.png-c4191a5b335afa5dc38c616b088bcb37.ctex"]
 
 [params]
 

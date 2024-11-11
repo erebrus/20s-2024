@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpvgl2rkfitj5"]
+
+[ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_4mqlo"]
+[ext_resource type="Texture2D" uid="uid://cduh7evd7000c" path="res://placeholders/gfx/placeholder_made_in_china_sticker.png" id="2_g800a"]
+[ext_resource type="Script" path="res://src/game/shadow.gd" id="3_2kjlq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1y3l"]
+size = Vector2(124, 78)
+
+[node name="MadeInChinaSticker" type="Node2D"]
+script = ExtResource("1_4mqlo")
+interactable_name = "Made in China Sticker"
+draggable = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -63.0
+offset_top = -63.0
+offset_right = 64.0
+offset_bottom = 63.0
+
+[node name="Shadow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.329412)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_g800a")
+script = ExtResource("3_2kjlq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_g800a")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_d1y3l")
