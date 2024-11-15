@@ -1,12 +1,26 @@
 class_name Interactable
 extends TweenableNode2D
 
+enum DragState{
+	DROPPED,
+	DRAGGING,
+	IN_INVENTORY,
+}
+
 @export var interactable_name := "No name assigned"
 @export var draggable := false
 @export var interactable := true
 
-static var CurrentGrabbed: Interactable
+
+static var CURRENT_GRABBED: Interactable
+static var DRAGGING_PARENT: Node2D
+static var DROPPED_PARENT: Node2D
+var inventory_slot_in : InventorySlot
 var isMouseOver := false
+var current_state:= DragState.DROPPED:
+	set(x):
+		Logger.info("item changed state to: " + DragState.keys()[x])
+		current_state = x
 @onready var shadow: Shadow = %Shadow
 @onready var area_2d: Area2D = $Area2D
 var overlappingInteractables : Array[Interactable]
@@ -45,17 +59,19 @@ func _on_control_gui_input(event: InputEvent) -> void:
 		if event.double_click or !draggable:
 			if event.is_pressed() and interactable:
 				interact()
+				get_viewport().set_input_as_handled()
 		else:
 			if event.is_pressed():
 				_start_dragging()
+				get_viewport().set_input_as_handled()
 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		if CurrentGrabbed and CurrentGrabbed == self:
-			global_position += event.relative / get_viewport().get_camera_2d().zoom
+		if current_state == DragState.DRAGGING:
+			global_position =  get_global_mouse_position()
 
-	if event is InputEventMouseButton and event.button_index == 1 and CurrentGrabbed and CurrentGrabbed == self :
+	if event is InputEventMouseButton and event.button_index == 1 and CURRENT_GRABBED and CURRENT_GRABBED == self :
 		_stop_dragging()
 
 func interact():
@@ -72,7 +88,7 @@ func try_interact_with_item(item_that_is_interacting_with_me: Interactable):
 
 func _mouse_entered() -> void:
 #TODO	we can add a controller when we start building a level and we need to seperate interactables into different parents
-	if CurrentGrabbed != null:
+	if CURRENT_GRABBED != null:
 		return
 
 	isMouseOver = true
@@ -89,27 +105,48 @@ func _mouse_exited() -> void:
 		tween_to_rotation(0, .1)
 
 func highlight():
-	get_parent().move_child(self, -1)
-	tween_to_scale(HIGHLIGHT_SCALE)
+	if draggable:
+		get_parent().move_child(self, -1)
+	if current_state != DragState.IN_INVENTORY:
+		tween_to_scale(HIGHLIGHT_SCALE)
 
 func de_highlight():
-	tween_to_scale(Vector2.ONE)
+	if current_state != DragState.IN_INVENTORY:
+		tween_to_scale(Vector2.ONE)
 func _start_dragging():
-	if CurrentGrabbed:
-		CurrentGrabbed._stop_dragging()
+
+	if CURRENT_GRABBED and is_instance_valid(CURRENT_GRABBED):
+		CURRENT_GRABBED._stop_dragging()
+
+	if current_state == DragState.IN_INVENTORY:
+		inventory_slot_in.take_from_slot()
+	current_state = DragState.DRAGGING
+	control.mouse_filter =Control.MOUSE_FILTER_IGNORE
+	reparent(DRAGGING_PARENT)
+	global_position = get_global_mouse_position()
 	tween_to_scale(PICKED_UP_SCALE)
-	CurrentGrabbed = self
+	CURRENT_GRABBED = self
 	OnGrabbed.emit()
 
+
 func _stop_dragging():
-	if CurrentGrabbed == self:
-		CurrentGrabbed = null
-	tween_to_scale(HIGHLIGHT_SCALE)
-	OnDropped.emit()
+
+	if CURRENT_GRABBED == self:
+		CURRENT_GRABBED = null
 
 	if area_2d:
 		for overlapping_interactable in overlappingInteractables:
 			overlapping_interactable.try_interact_with_item(self)
+
+	if current_state != DragState.IN_INVENTORY:
+		current_state = DragState.DROPPED
+		reparent(DROPPED_PARENT)
+		tween_to_scale(HIGHLIGHT_SCALE)
+	control.mouse_filter =Control.MOUSE_FILTER_STOP
+
+	OnDropped.emit()
+
+
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

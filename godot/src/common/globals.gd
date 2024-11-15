@@ -13,6 +13,7 @@ var debug_build := false
 var in_game:=false
 
 var crump: RonaldCrump
+var inventory: Inventory
 
 var music_on:=true:
 	set(v):

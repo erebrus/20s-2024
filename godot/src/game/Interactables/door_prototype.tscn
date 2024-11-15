@@ -38,9 +38,6 @@ position = Vector2(-2, -56)
 script = ExtResource("4_ycqy6")
 nav_link_to_toggle = NodePath("../NavigationLink2D")
 is_door_open = true
-require_item_to_interact = true
-possible_items_needed_for_interaction = Array[String](["Door Key"])
-destroy_other_on_use = true
 
 [node name="NavigationLink2D" type="NavigationLink2D" parent="."]
 top_level = true

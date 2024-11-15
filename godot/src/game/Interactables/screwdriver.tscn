@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://cms5h57n02xqp"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_pia17"]
-[ext_resource type="Texture2D" uid="uid://xf2dx20n7daa" path="res://placeholders/gfx/placeholder_screwdriver.png" id="2_l0c6c"]
+[ext_resource type="Texture2D" uid="uid://dr6ewo6lbqvce" path="res://assets/gfx/environment/screwdriver.png" id="2_5851c"]
 [ext_resource type="Script" path="res://src/game/shadow.gd" id="3_caij5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
-size = Vector2(34.5, 166)
+size = Vector2(19, 19)
 
 [node name="Screwdriver" type="Node2D"]
 script = ExtResource("1_pia17")
@@ -15,22 +15,22 @@ draggable = true
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -15.0
-offset_top = -86.0
-offset_right = 18.0
-offset_bottom = 81.0
+offset_left = -11.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 11.0
 
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(0, 0, 0, 0.329412)
-texture = ExtResource("2_l0c6c")
+texture = ExtResource("2_5851c")
 script = ExtResource("3_caij5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_l0c6c")
+texture = ExtResource("2_5851c")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.75, -2)
+position = Vector2(-1.5, 1.5)
 shape = SubResource("RectangleShape2D_ga48g")

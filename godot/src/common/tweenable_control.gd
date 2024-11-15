@@ -1,16 +1,10 @@
-class_name TweenableNode2D
-extends Node2D
+class_name TweenableControl
+extends Control
 
 
 var scale_tween: Tween
 var position_tween: Tween
 var rotation_tween: Tween
-
-
-func is_position_tweening()->bool:
-	if position_tween and position_tween.is_running():
-		return true
-	return false
 
 func tween_to_scale(new_scale: Vector2, tween_duration: float = 0.1) -> Tween:
 	if scale_tween:
@@ -20,10 +14,10 @@ func tween_to_scale(new_scale: Vector2, tween_duration: float = 0.1) -> Tween:
 	return scale_tween
 
 
-func tween_to_position(position_to_tween_to: Vector2, tween_duration: float = 1.0, ease:= Tween.EASE_IN_OUT, trans:= Tween.TRANS_SINE) -> Tween:
+func tween_to_position(position_to_tween_to: Vector2, tween_duration: float = 1.0) -> Tween:
 	if position_tween:
 		position_tween.kill()
-	position_tween = create_tween().set_ease(ease).set_trans(trans)
+	position_tween = create_tween()
 	position_tween.tween_property(self,"position",position_to_tween_to, tween_duration)
 	return position_tween
 

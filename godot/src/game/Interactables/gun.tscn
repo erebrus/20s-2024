@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://bftq5wrj50bba"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_oiags"]
-[ext_resource type="Texture2D" uid="uid://bvg85ckga4wle" path="res://placeholders/gfx/placeholder_gun.png" id="2_rueg4"]
+[ext_resource type="Texture2D" uid="uid://v4hduatja3rn" path="res://assets/gfx/environment/gun.png" id="2_l7c60"]
 [ext_resource type="Script" path="res://src/game/shadow.gd" id="3_wghx3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
-size = Vector2(84, 96)
+size = Vector2(22, 19)
 
 [node name="Gun" type="Node2D"]
 script = ExtResource("1_oiags")
@@ -15,22 +15,24 @@ draggable = true
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -47.0
-offset_top = -54.0
-offset_right = 51.0
-offset_bottom = 51.0
+offset_left = -10.0
+offset_top = -9.0
+offset_right = 12.0
+offset_bottom = 11.0
 
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(0, 0, 0, 0.329412)
-texture = ExtResource("2_rueg4")
+texture_filter = 1
+texture = ExtResource("2_l7c60")
 script = ExtResource("3_wghx3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_rueg4")
+texture_filter = 1
+texture = ExtResource("2_l7c60")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(3, -1)
+position = Vector2(1, 1.5)
 shape = SubResource("RectangleShape2D_ga48g")

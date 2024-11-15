@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://w8lg7mqxi74r"]
+
+[ext_resource type="PackedScene" uid="uid://d0hre8gcgkoqi" path="res://src/game/Inventory/inventory_slot.tscn" id="1_6yhqh"]
+[ext_resource type="Script" path="res://src/game/Inventory/inventory.gd" id="1_cv7fi"]
+
+[node name="Inventory" type="CanvasLayer"]
+script = ExtResource("1_cv7fi")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -103.48
+offset_right = -39.48
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="InventorySlot" parent="HBoxContainer" instance=ExtResource("1_6yhqh")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="HBoxContainer" instance=ExtResource("1_6yhqh")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="HBoxContainer" instance=ExtResource("1_6yhqh")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="HBoxContainer" instance=ExtResource("1_6yhqh")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="HBoxContainer" instance=ExtResource("1_6yhqh")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="HBoxContainer" instance=ExtResource("1_6yhqh")]
+layout_mode = 2
+
+[node name="InventorySlot7" parent="HBoxContainer" instance=ExtResource("1_6yhqh")]
+layout_mode = 2

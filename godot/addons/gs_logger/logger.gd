@@ -48,22 +48,22 @@ const LOG_FORMAT_FULL = 99
 const LOG_FORMAT_NONE = -1
 
 
-var _logger_level : int = LOG_LEVEL_ALL 
+var _logger_level : int = LOG_LEVEL_ALL
 var logger_level:
 	get:
 		return _logger_level
 	set(value):
 		_logger_level = value
-		
-		
+
+
 var _logger_format = LOG_FORMAT_DEFAULT
 var logger_format:
 	get:
 		return _logger_format
 	set(value):
 		_logger_format = value
-		
-		
+
+
 var logger_line = 0
 var logger_appenders = []
 var refresh_appenders = false
@@ -94,7 +94,7 @@ func set_logger_format(format : int):
 	logger_format = format
 	print("Logging Format is %s" % [_get_format_name(format)])
 	print(" ")
-	
+
 	for appender in logger_appenders:
 		appender.logger_format = format
 
@@ -135,7 +135,7 @@ func warn(message : String, category : String = CATEGORY_GENERAL):
 #Function: error
 #	Log an Error Message.
 func error(message : String, category : String = CATEGORY_GENERAL):
-	_append(LOG_LEVEL_ERROR, message, category) 
+	_append(LOG_LEVEL_ERROR, message, category)
 
 
 #Function: fatal
