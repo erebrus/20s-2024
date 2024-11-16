@@ -1,14 +1,14 @@
 [gd_scene load_steps=8 format=3 uid="uid://cywcur4k68hdr"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_lsihm"]
-[ext_resource type="Texture2D" uid="uid://bodcnybnabv2o" path="res://placeholders/gfx/placeholder_big_beautiful_button.png" id="2_yjt06"]
+[ext_resource type="Texture2D" uid="uid://bgfciwlrpj6s" path="res://assets/gfx/environment/red button.png" id="2_k4dnq"]
 [ext_resource type="Script" path="res://src/game/shadow.gd" id="3_d8o3v"]
 [ext_resource type="Script" path="res://src/game/InteractComponents/change_name_on_interaction.gd" id="4_d4q8o"]
 [ext_resource type="Script" path="res://src/game/InteractComponents/replace_on_interact.gd" id="5_jbcpc"]
 [ext_resource type="PackedScene" uid="uid://c4a58iode7wuh" path="res://src/game/Interactables/missing_button.tscn" id="6_qxqop"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5gqln"]
-size = Vector2(181, 106)
+size = Vector2(53, 47)
 
 [node name="BigBeautifulButton" type="Node2D"]
 script = ExtResource("1_lsihm")
@@ -17,27 +17,29 @@ interactable_name = "Big Beautiful Button"
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -61.0
-offset_top = -66.0
-offset_right = 66.0
+offset_left = -25.0
+offset_top = -32.0
+offset_right = 20.0
 offset_bottom = 11.0
 
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(0, 0, 0, 0.329412)
-position = Vector2(2, -52)
-texture = ExtResource("2_yjt06")
+position = Vector2(4, -16)
+scale = Vector2(4, 4)
+texture = ExtResource("2_k4dnq")
 script = ExtResource("3_d8o3v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(2, -52)
-texture = ExtResource("2_yjt06")
+position = Vector2(4, -16)
+scale = Vector2(4, 4)
+texture = ExtResource("2_k4dnq")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(2, -52)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, 35)
+position = Vector2(-2.5, 41.5)
 shape = SubResource("RectangleShape2D_5gqln")
 
 [node name="RenameOnSticker" type="Node2D" parent="."]
@@ -54,3 +56,4 @@ script = ExtResource("5_jbcpc")
 packed_scene_to_replace_with = ExtResource("6_qxqop")
 require_item_to_interact = true
 possible_items_needed_for_interaction = Array[String](["Screwdriver"])
+destroy_other_on_use = true

@@ -21,6 +21,8 @@ var current_state:= DragState.DROPPED:
 	set(x):
 		Logger.info("item changed state to: " + DragState.keys()[x])
 		current_state = x
+
+@onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var shadow: Shadow = %Shadow
 @onready var area_2d: Area2D = $Area2D
 var overlappingInteractables : Array[Interactable]
@@ -28,6 +30,8 @@ var overlappingInteractables : Array[Interactable]
 
 const HIGHLIGHT_SCALE:= Vector2(1.1,1.1)
 const PICKED_UP_SCALE:= Vector2(1.2,1.2)
+const CLICK_DELAY_TIME := 0.2
+var _click_timer:float = 0.0
 
 signal OnInteracted
 signal OnInteractedWithItem(Interactable)
@@ -53,16 +57,19 @@ func _ready() -> void:
 	if shadow:
 		shadow.initialise(self)
 
-
+func _process(delta: float) -> void:
+	_click_timer += delta
 func _on_control_gui_input(event: InputEvent) -> void:
 	if isMouseOver and event is InputEventMouseButton and event.button_index == 1:
-		if event.double_click or !draggable:
+		if draggable:
+			if event.is_pressed():
+				_click_timer = 0
+				_start_dragging()
+				get_viewport().set_input_as_handled()
+
+		else:
 			if event.is_pressed() and interactable:
 				interact()
-				get_viewport().set_input_as_handled()
-		else:
-			if event.is_pressed():
-				_start_dragging()
 				get_viewport().set_input_as_handled()
 
 
@@ -70,6 +77,9 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if current_state == DragState.DRAGGING:
 			global_position =  get_global_mouse_position()
+	if current_state == DragState.DRAGGING and event is InputEventMouseButton and event.button_index == 1:
+		if _click_timer < CLICK_DELAY_TIME:
+			Globals.inventory.add_item_to_inventory(self)
 
 	if event is InputEventMouseButton and event.button_index == 1 and CURRENT_GRABBED and CURRENT_GRABBED == self :
 		_stop_dragging()

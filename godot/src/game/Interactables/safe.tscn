@@ -1,14 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://dr8bb6uuq4gbi"]
+[gd_scene load_steps=11 format=3 uid="uid://dr8bb6uuq4gbi"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_gnu75"]
-[ext_resource type="Texture2D" uid="uid://d3lvorxovqj02" path="res://placeholders/gfx/placeholder_safe.png" id="2_yvv1d"]
+[ext_resource type="Texture2D" uid="uid://b4fcxvusqkasc" path="res://assets/gfx/environment/safety box.png" id="2_e32lg"]
 [ext_resource type="Script" path="res://src/game/shadow.gd" id="3_tw8q8"]
 [ext_resource type="Script" path="res://src/game/InteractComponents/spawn_item_on_interact.gd" id="4_wvn5j"]
 [ext_resource type="PackedScene" uid="uid://bftq5wrj50bba" path="res://src/game/Interactables/gun.tscn" id="5_wr3ev"]
+[ext_resource type="Script" path="res://src/game/InteractComponents/change_sprite_on_interaction.gd" id="7_1kwr3"]
 [ext_resource type="Script" path="res://src/game/InteractComponents/change_name_on_interaction.gd" id="7_ylfuh"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_052jy"]
+atlas = ExtResource("2_e32lg")
+region = Rect2(39.3684, 0, 33.9922, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yeqpq"]
+atlas = ExtResource("2_e32lg")
+region = Rect2(0, 0, 37.5099, 32)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_garpc"]
-size = Vector2(174, 157)
+size = Vector2(116, 91)
 
 [node name="Safe" type="Node2D"]
 script = ExtResource("1_gnu75")
@@ -17,21 +26,23 @@ interactable_name = "Locked Safe"
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -85.5
-offset_top = -140.0
-offset_right = 91.5
-offset_bottom = 25.0
+offset_left = -47.0
+offset_top = -93.0
+offset_right = 64.0
+offset_bottom = -3.0
 
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(0, 0, 0, 0.329412)
 position = Vector2(6.5, -50)
-texture = ExtResource("2_yvv1d")
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_052jy")
 script = ExtResource("3_tw8q8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(6.5, -50)
-texture = ExtResource("2_yvv1d")
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_052jy")
 
 [node name="SpawnItemOnInteract" type="Node2D" parent="."]
 position = Vector2(6.5, -50)
@@ -49,9 +60,15 @@ require_item_to_interact = true
 possible_items_needed_for_interaction = Array[String](["Password"])
 destroy_other_on_use = true
 
+[node name="ChangeSpriteOnInteract" type="Node2D" parent="."]
+script = ExtResource("7_1kwr3")
+new_sprite = SubResource("AtlasTexture_yeqpq")
+require_item_to_interact = true
+possible_items_needed_for_interaction = Array[String](["Password"])
+
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(6.5, -50)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, -3.5)
+position = Vector2(0.5, 2.5)
 shape = SubResource("RectangleShape2D_garpc")

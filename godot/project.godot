@@ -25,6 +25,8 @@ Logger="*res://addons/gs_logger/logger.gd"
 
 [display]
 
+window/size/viewport_width=1024
+window/size/viewport_height=768
 window/stretch/mode="canvas_items"
 
 [editor_plugins]

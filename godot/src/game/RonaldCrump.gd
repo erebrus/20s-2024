@@ -3,7 +3,7 @@ extends Interactable
 
 @export var button: Interactable
 
-var _moveSpeed := 150.0
+var _moveSpeed := 20.0
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var voice_player: AudioStreamPlayer2D = $VoicePlayer
 var pause_movement := false

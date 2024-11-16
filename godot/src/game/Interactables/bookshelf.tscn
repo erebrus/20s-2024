@@ -1,15 +1,24 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3p0bew50yepm"]
+[gd_scene load_steps=12 format=3 uid="uid://c3p0bew50yepm"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_ukxq2"]
-[ext_resource type="Texture2D" uid="uid://c44dwoqx4ib1d" path="res://placeholders/gfx/placeholder_bookshelf.png" id="2_dohur"]
+[ext_resource type="Texture2D" uid="uid://smxl8pt51t0u" path="res://assets/gfx/environment/bookshelf.png" id="2_2txpc"]
 [ext_resource type="Script" path="res://src/game/shadow.gd" id="3_xjp58"]
 [ext_resource type="Script" path="res://src/game/InteractComponents/spawn_item_on_interact.gd" id="4_fjsov"]
 [ext_resource type="PackedScene" uid="uid://4l6y72w2g6cb" path="res://src/game/Interactables/paper.tscn" id="5_wy82e"]
 [ext_resource type="PackedScene" uid="uid://cms5h57n02xqp" path="res://src/game/Interactables/screwdriver.tscn" id="6_dxepx"]
 [ext_resource type="PackedScene" uid="uid://cnb1byuadu5q6" path="res://src/game/Interactables/password.tscn" id="7_t0v4j"]
+[ext_resource type="Script" path="res://src/game/InteractComponents/change_sprite_on_interaction.gd" id="8_6lml1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi31w"]
+atlas = ExtResource("2_2txpc")
+region = Rect2(0, 0, 70, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbx0i"]
+atlas = ExtResource("2_2txpc")
+region = Rect2(66.1137, 0, 77.8863, 72)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_garpc"]
-size = Vector2(330, 342)
+size = Vector2(176, 260)
 
 [node name="BookShelf" type="Node2D"]
 position = Vector2(1, -154)
@@ -19,19 +28,21 @@ interactable_name = "Bookshelf"
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -182.0
-offset_top = -187.0
-offset_right = 183.0
-offset_bottom = 195.0
+offset_left = -99.0
+offset_top = -129.0
+offset_right = 73.0
+offset_bottom = 112.0
 
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(0, 0, 0, 0.329412)
-texture = ExtResource("2_dohur")
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_bi31w")
 script = ExtResource("3_xjp58")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_dohur")
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_bi31w")
 
 [node name="SpawnItemOnInteract" type="Node2D" parent="."]
 script = ExtResource("4_fjsov")
@@ -40,8 +51,14 @@ require_item_to_interact = true
 possible_items_needed_for_interaction = Array[String](["Bookshelf Key"])
 destroy_other_on_use = true
 
+[node name="ChangeSpriteOnInteract" type="Node2D" parent="."]
+script = ExtResource("8_6lml1")
+new_sprite = SubResource("AtlasTexture_xbx0i")
+require_item_to_interact = true
+possible_items_needed_for_interaction = Array[String](["Bookshelf Key"])
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(4, -2)
+position = Vector2(-11, -1)
 shape = SubResource("RectangleShape2D_garpc")

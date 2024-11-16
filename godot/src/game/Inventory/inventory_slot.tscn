@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0hre8gcgkoqi"]
+[gd_scene load_steps=7 format=3 uid="uid://d0hre8gcgkoqi"]
 
 [ext_resource type="Script" path="res://src/game/Inventory/inventory_slot.gd" id="1_hore7"]
 [ext_resource type="AudioStream" uid="uid://cs5d4xpaepfno" path="res://placeholders/sfx/inventory_hover.mp3" id="2_di5uy"]
@@ -14,9 +14,13 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("3_ry32t")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apfqj"]
+
 [node name="InventorySlot" type="TextureRect"]
 z_index = -1
 custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
 pivot_offset = Vector2(32, 32)
 script = ExtResource("1_hore7")
 
@@ -40,3 +44,4 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_apfqj")
