@@ -1,21 +1,74 @@
-[gd_scene load_steps=9 format=3 uid="uid://cko6w8bt6ryxp"]
+[gd_scene load_steps=18 format=3 uid="uid://cko6w8bt6ryxp"]
 
 [ext_resource type="Script" path="res://src/game/RonaldCrump.gd" id="1_xpida"]
 [ext_resource type="AudioStream" uid="uid://b4jet2t7mshnv" path="res://placeholders/sfx/placeholder_trump_chinese_button.mp3" id="2_i0pml"]
-[ext_resource type="Texture2D" uid="uid://7ah71eomo6dg" path="res://placeholders/gfx/placeholder_ronald_crump.jpg" id="2_sv3n3"]
 [ext_resource type="AudioStream" uid="uid://bnmmniaj0546m" path="res://placeholders/sfx/placeholder_trump_walking.mp3" id="3_fqd1r"]
 [ext_resource type="AudioStream" uid="uid://cy8iip0lp41ou" path="res://placeholders/sfx/placeholder_fake_button.mp3" id="3_yvn8o"]
+[ext_resource type="Texture2D" uid="uid://dq876mujmvd8d" path="res://assets/gfx/characters/grump-standing.png" id="4_0mwmg"]
+[ext_resource type="Texture2D" uid="uid://ra021pu8okbw" path="res://assets/gfx/characters/grump-walking1.png" id="4_01phh"]
 [ext_resource type="Script" path="res://src/game/InteractComponents/trigger_trump_voice_line_on_interact.gd" id="5_d403u"]
+[ext_resource type="Texture2D" uid="uid://c10f5mj5p0sop" path="res://assets/gfx/characters/grump-walking2.png" id="5_k127q"]
+[ext_resource type="Texture2D" uid="uid://5gdk7ayyai5r" path="res://assets/gfx/characters/grump-walking3.png" id="6_22qc8"]
 [ext_resource type="AudioStream" uid="uid://ddk6xth2csrhj" path="res://placeholders/sfx/placeholder_try_gun_on_trump.mp3" id="6_nesmu"]
+[ext_resource type="Texture2D" uid="uid://1m00he6ll0x5" path="res://assets/gfx/characters/grump-walking4.png" id="7_g4wa8"]
+[ext_resource type="Texture2D" uid="uid://dymogcx31r5bg" path="res://assets/gfx/characters/grump-walking5.png" id="8_lr2ox"]
+[ext_resource type="Texture2D" uid="uid://dh1ko5ihokewj" path="res://assets/gfx/characters/grump-walking6.png" id="9_euxpf"]
+[ext_resource type="Texture2D" uid="uid://ceoepfpsgdx2" path="res://assets/gfx/characters/grump-walking7.png" id="10_pgjvj"]
+[ext_resource type="Texture2D" uid="uid://csn34jdx4y3ue" path="res://assets/gfx/characters/grump-walking8.png" id="11_hxqik"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yvevd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0mwmg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_01phh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_k127q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_22qc8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_g4wa8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_lr2ox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_euxpf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pgjvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_hxqik")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_074sm"]
-size = Vector2(130, 178)
+size = Vector2(126, 199)
 
 [node name="Crump" type="Node2D" groups=["Crump"]]
 script = ExtResource("1_xpida")
 made_in_china_line = ExtResource("2_i0pml")
 crudely_drawn_button_line = ExtResource("3_yvn8o")
 interactable_name = "Ronald Crump"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(6, -106)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_yvevd")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -24,11 +77,6 @@ offset_left = -64.0
 offset_top = -154.0
 offset_right = 58.0
 offset_bottom = 24.0
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-3, -66)
-scale = Vector2(0.181429, 0.181429)
-texture = ExtResource("2_sv3n3")
 
 [node name="VoicePlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_fqd1r")
@@ -40,9 +88,10 @@ bus = &"Sound"
 debug_enabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(8, -27)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-3, -76)
+position = Vector2(-1, -74.5)
 shape = SubResource("RectangleShape2D_074sm")
 
 [node name="ChangeVoiceLineGun" type="Node2D" parent="."]

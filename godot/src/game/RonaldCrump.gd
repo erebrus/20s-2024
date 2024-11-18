@@ -2,7 +2,7 @@ class_name RonaldCrump
 extends Interactable
 
 @export var button: Interactable
-
+@export var speed:float = 60
 @export_group("Voice Lines")
 @export var made_in_china_line: AudioStream
 @export var crudely_drawn_button_line: AudioStream
@@ -10,25 +10,29 @@ extends Interactable
 
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var voice_player: AudioStreamPlayer2D = $VoicePlayer
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var pause_movement := false
 var _audiostream_volume_tween: Tween
 
 var _moveSpeed := 20.0
-
+var path:PathFollow2D
 
 func _ready() -> void:
 	super._ready()
+	path = get_parent() as PathFollow2D
 	Globals.crump = self
 	navigation_agent_2d.target_position = button.global_position
 	area_2d.area_entered.connect(_on_area_2d_area_entered)
-
+	sprite.play("walk")
 
 func _process(delta: float) -> void:
 	if pause_movement:
 		return
-	global_position = global_position.move_toward(navigation_agent_2d.get_next_path_position(),_moveSpeed * delta)
-
+	#global_position = global_position.move_toward(navigation_agent_2d.get_next_path_position(),_moveSpeed * delta)
+	path.progress+=speed*delta
+	if path.progress_ratio == 1:
+		get_tree().quit()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	var interacable_hit := area.get_parent()
