@@ -3,15 +3,19 @@ extends Interactable
 
 @export var button: Interactable
 
-var _moveSpeed := 20.0
-@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
-@onready var voice_player: AudioStreamPlayer2D = $VoicePlayer
-var pause_movement := false
-
 @export_group("Voice Lines")
 @export var made_in_china_line: AudioStream
 @export var crudely_drawn_button_line: AudioStream
 @export var missing_button_line: AudioStream
+
+@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+@onready var voice_player: AudioStreamPlayer2D = $VoicePlayer
+
+var pause_movement := false
+var _audiostream_volume_tween: Tween
+
+var _moveSpeed := 20.0
+
 
 func _ready() -> void:
 	super._ready()
@@ -19,7 +23,7 @@ func _ready() -> void:
 	navigation_agent_2d.target_position = button.global_position
 	area_2d.area_entered.connect(_on_area_2d_area_entered)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	if pause_movement:
 		return
@@ -61,15 +65,13 @@ func trigger_lose(voice_line: AudioStream):
 	Globals.do_lose()
 
 
-var audiostream_volume_tween: Tween
-
 func change_voice_line(new_stream: AudioStream):
-	if audiostream_volume_tween:
-		audiostream_volume_tween.kill()
-	audiostream_volume_tween = create_tween()
-	audiostream_volume_tween.tween_property(voice_player,"volume_db",-60, .2)
-	await audiostream_volume_tween.finished
+	if _audiostream_volume_tween:
+		_audiostream_volume_tween.kill()
+	_audiostream_volume_tween = create_tween()
+	_audiostream_volume_tween.tween_property(voice_player,"volume_db",-60, .2)
+	await _audiostream_volume_tween.finished
 	voice_player.volume_db = 0
 	voice_player.stream = new_stream
 	voice_player.play()
-	return audiostream_volume_tween
+	return _audiostream_volume_tween

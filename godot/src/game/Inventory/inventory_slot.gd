@@ -1,6 +1,8 @@
 class_name InventorySlot
 extends TweenableControl
 
+#TODO make it so that items can interact with eachtoher while in inventory
+
 var _is_mouse_over := false
 var interactable_on_button : Interactable
 
@@ -8,18 +10,15 @@ var interactable_on_button : Interactable
 @onready var item_drop_sound: AudioStreamPlayer = %ItemDropSound
 
 
-#TODO make it so that items can interact with eachtoher while in inventory
-
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 
 
 func _input(event: InputEvent) -> void:
-	if interactable_on_button and !interactable_on_button.is_position_tweening():
+	if is_instance_valid(interactable_on_button) and !interactable_on_button.is_position_tweening():
 		if event is InputEventMouseButton:
 			interactable_on_button.position = size/2
-
 
 
 func assign_item(item: Interactable, tween_to_position_time : float = 0.0):
@@ -27,7 +26,6 @@ func assign_item(item: Interactable, tween_to_position_time : float = 0.0):
 	item.inventory_slot_in = self
 	interactable_on_button.reparent(self)
 	interactable_on_button.current_state = Interactable.DragState.IN_INVENTORY
-
 	if tween_to_position_time == 0.0:
 		interactable_on_button.position = size/2
 	else:
@@ -42,9 +40,6 @@ func assign_item(item: Interactable, tween_to_position_time : float = 0.0):
 		interactable_on_button.tween_to_scale(Vector2.ONE *( size.y/interactable_on_button.control.size.y))
 
 
-
-
-
 func _on_mouse_entered() -> void:
 	_is_mouse_over = true
 	if Interactable.CURRENT_GRABBED and !interactable_on_button:
@@ -52,18 +47,20 @@ func _on_mouse_entered() -> void:
 		assign_item(Interactable.CURRENT_GRABBED)
 	highlight()
 
+
 func highlight():
 	tween_to_scale(Vector2(1.1,1.1))
 
+
 func dehighlight():
 	tween_to_scale(Vector2.ONE)
+
 
 func _on_mouse_exited() -> void:
 	_is_mouse_over = false
 	dehighlight()
 	if interactable_on_button and Interactable.CURRENT_GRABBED and Interactable.CURRENT_GRABBED == interactable_on_button:
 		interactable_on_button._start_dragging()
-
 
 
 func take_from_slot():

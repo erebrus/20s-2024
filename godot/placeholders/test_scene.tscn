@@ -113,32 +113,11 @@ position = Vector2(878, 413)
 [node name="Pen" parent="DroppedParent" instance=ExtResource("11_w60ay")]
 position = Vector2(712, 343)
 
-[node name="BidensPhoneNumber" parent="DroppedParent" instance=ExtResource("16_lychd")]
-position = Vector2(583, 522)
-
-[node name="BidensPhoneNumber2" parent="DroppedParent" instance=ExtResource("16_lychd")]
-position = Vector2(453, 528)
-
-[node name="BidensPhoneNumber3" parent="DroppedParent" instance=ExtResource("16_lychd")]
-position = Vector2(555, 570)
-
-[node name="BidensPhoneNumber4" parent="DroppedParent" instance=ExtResource("16_lychd")]
-position = Vector2(659, 563)
-
-[node name="BidensPhoneNumber5" parent="DroppedParent" instance=ExtResource("16_lychd")]
-position = Vector2(526, 461)
-
-[node name="BidensPhoneNumber6" parent="DroppedParent" instance=ExtResource("16_lychd")]
-position = Vector2(366, 495)
-
-[node name="BidensPhoneNumber7" parent="DroppedParent" instance=ExtResource("16_lychd")]
-position = Vector2(322, 574)
-
-[node name="BidensPhoneNumber8" parent="DroppedParent" instance=ExtResource("16_lychd")]
-position = Vector2(429, 595)
-
 [node name="Safe" parent="DroppedParent" instance=ExtResource("14_xwqhc")]
 position = Vector2(587, 326)
 
 [node name="WhitehousePhone" parent="DroppedParent" instance=ExtResource("14_di28k")]
 position = Vector2(36, 412)
+
+[node name="BidensPhoneNumber" parent="DroppedParent" instance=ExtResource("16_lychd")]
+position = Vector2(996, 647)
