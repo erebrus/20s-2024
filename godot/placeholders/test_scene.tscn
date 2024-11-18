@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d4mejcu3ayh5b"]
+[gd_scene load_steps=18 format=3 uid="uid://d4mejcu3ayh5b"]
 
 [ext_resource type="PackedScene" uid="uid://w8lg7mqxi74r" path="res://src/game/Inventory/inventory.tscn" id="1_i6mi4"]
 [ext_resource type="Script" path="res://src/game/time_display.gd" id="2_84qxq"]
@@ -22,11 +22,6 @@ font_size = 30
 [sub_resource type="LabelSettings" id="LabelSettings_62eyn"]
 font_size = 66
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_g7xwd"]
-vertices = PackedVector2Array(99.8594, 60.4531, -116.727, 59.2969, -116.453, 53.7578, -115.492, 53.6875, 41.8828, -6.57813, 79.5234, 22.7422, 94.2891, 40.4688, 100.352, 52.7734, -99.2031, 38.5703, -2.89063, -10.9219, -77.0938, 1.52344, -99.4375, 15.7031)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 0, 3, 8, 9), PackedInt32Array(10, 9, 8, 11)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-80.75, -8, -109.5, 10.25, -109.25, 34.25, -119.75, 44, -126, 44.5, -127.25, 69.25, 109.25, 70.5, 110.5, 50.75, 102.75, 35, 86.5, 15.5, 45.75, -16.25, -3.25, -21)])
-
 [node name="TestScene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -37,15 +32,6 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="Inventory" parent="." instance=ExtResource("1_i6mi4")]
-
-[node name="DraggingLayer" type="CanvasLayer" parent="."]
-layer = 10
-follow_viewport_enabled = true
-
-[node name="DraggingParent" type="Node2D" parent="DraggingLayer"]
-script = ExtResource("5_xccsm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(512, 393)
@@ -79,24 +65,19 @@ vertical_alignment = 1
 autowrap_mode = 3
 script = ExtResource("3_iyjpe")
 
-[node name="Bg" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1
 position = Vector2(512, 393)
 scale = Vector2(4, 4)
 texture = ExtResource("19_6f6ip")
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Bg"]
-visible = false
-navigation_polygon = SubResource("NavigationPolygon_g7xwd")
 
 [node name="Desk" type="Sprite2D" parent="."]
 position = Vector2(803, 445)
 scale = Vector2(4, 4)
 texture = ExtResource("7_t5ycq")
 
-[node name="Crump" parent="." node_paths=PackedStringArray("button") instance=ExtResource("6_3u3x4")]
-z_index = 1
-position = Vector2(136, 555)
-button = NodePath("../DroppedParent/BigBeautifulButton")
+[node name="Inventory" parent="." instance=ExtResource("1_i6mi4")]
+layout_mode = 1
 
 [node name="DroppedParent" type="Node2D" parent="."]
 script = ExtResource("9_nwrvg")
@@ -121,3 +102,11 @@ position = Vector2(36, 412)
 
 [node name="BidensPhoneNumber" parent="DroppedParent" instance=ExtResource("16_lychd")]
 position = Vector2(996, 647)
+
+[node name="Crump" parent="." node_paths=PackedStringArray("button") instance=ExtResource("6_3u3x4")]
+position = Vector2(136, 555)
+button = NodePath("../DroppedParent/BigBeautifulButton")
+
+[node name="DraggingParent" type="Node2D" parent="."]
+position = Vector2(0, 2)
+script = ExtResource("5_xccsm")

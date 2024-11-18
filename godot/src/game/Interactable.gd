@@ -49,6 +49,8 @@ func _ready() -> void:
 		area_2d.area_exited.connect(_on_area_2d_area_exited)
 	if shadow:
 		shadow.initialise(self)
+#	 this is just to make it ontop on inventory slots
+	z_index = 1
 
 
 func _process(delta: float) -> void:

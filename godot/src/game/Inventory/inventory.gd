@@ -1,5 +1,5 @@
 class_name Inventory
-extends CanvasLayer
+extends Control
 
 var inventory_slots :Array[InventorySlot]
 
