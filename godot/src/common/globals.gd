@@ -2,6 +2,9 @@ extends Node
 
 const GAME_SCENE_PATH = "res://src/main.tscn"
 
+@onready var sound_effects: AudioStreamPlayer = $SoundEffects
+
+
 var master_volume:float = 100
 var music_volume:float = 100
 var sfx_volume:float = 100
@@ -33,7 +36,9 @@ var sound_on:=true:
 
 @onready var music_manager: MusicManager = $MusicManager
 
-
+func play_sfx(audio_stream: AudioStream):
+	sound_effects.stream = audio_stream
+	sound_effects.play()
 
 func _ready():
 	_init_logger()
@@ -51,8 +56,6 @@ func start_game():
 
 	get_tree().change_scene_to_file(GAME_SCENE_PATH)
 	music_manager.fade_in_game_music()
-
-
 
 
 

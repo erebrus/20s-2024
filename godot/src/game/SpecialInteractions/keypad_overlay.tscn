@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cr0o026nocye6"]
+[gd_scene load_steps=13 format=3 uid="uid://cr0o026nocye6"]
 
 [ext_resource type="Script" path="res://src/game/SpecialInteractions/keypad_overlay.gd" id="1_nkhys"]
 [ext_resource type="Texture2D" uid="uid://b4fcxvusqkasc" path="res://assets/gfx/environment/safety box.png" id="2_1vvhu"]
 [ext_resource type="Script" path="res://src/common/tweenable_control.gd" id="2_wm0mr"]
+[ext_resource type="AudioStream" uid="uid://dnl08h1ilt3ti" path="res://placeholders/sfx/safe_button_press.mp3" id="4_qxs8c"]
+[ext_resource type="AudioStream" uid="uid://uy1ctmud7u7f" path="res://placeholders/sfx/placeholder_open_safe.mp3" id="5_vhtja"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5q2yf"]
 atlas = ExtResource("2_1vvhu")
@@ -20,6 +22,16 @@ bg_color = Color(0.118581, 0.118581, 0.118581, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_vbwdt"]
 font_size = 35
 font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_foge5"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("4_qxs8c")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ennyi"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("5_vhtja")
 
 [node name="KeypadOverlay" type="CanvasLayer"]
 script = ExtResource("1_nkhys")
@@ -48,6 +60,7 @@ stretch_mode = 5
 script = ExtResource("2_wm0mr")
 
 [node name="HFlowContainer" type="HFlowContainer" parent="Safe"]
+layout_mode = 0
 offset_left = 816.0
 offset_top = 513.0
 offset_right = 1171.0
@@ -183,6 +196,7 @@ theme_override_font_sizes/font_size = 51
 text = "Close"
 
 [node name="ReadoutScreenBackground" type="ColorRect" parent="Safe"]
+layout_mode = 0
 offset_left = 832.0
 offset_top = 419.0
 offset_right = 1119.0
@@ -196,7 +210,6 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 188.0
-offset_right = -13.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "1234"
@@ -213,6 +226,13 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Password:"
 label_settings = SubResource("LabelSettings_vbwdt")
+
+[node name="ButtonPressSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_foge5")
+max_polyphony = 3
+
+[node name="OpenSafeSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ennyi")
 
 [connection signal="pressed" from="Safe/HFlowContainer/1" to="." method="_on_number_pressed" binds= [1]]
 [connection signal="pressed" from="Safe/HFlowContainer/2" to="." method="_on_number_pressed" binds= [2]]

@@ -23,3 +23,7 @@ stream = SubResource("AudioStreamSynchronized_q1nu8")
 process_mode = 3
 
 [node name="murder_music" type="AudioStreamPlayer" parent="MusicManager"]
+
+[node name="SoundEffects" type="AudioStreamPlayer" parent="."]
+max_polyphony = 10
+bus = &"Sound"

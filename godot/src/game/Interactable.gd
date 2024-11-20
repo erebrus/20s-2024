@@ -16,10 +16,17 @@ const CLICK_DELAY_TIME := 0.2
 @export var draggable := false
 @export var interactable := true
 
+@export_group("sounds")
+@export var interact_sound: AudioStream
+@export var start_drag_sound: AudioStream
+@export var stop_drag_sound: AudioStream
+
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var shadow: Shadow = %Shadow
 @onready var area_2d: Area2D = $Area2D
 @onready var control: Control = $Control
+
+
 
 static var CURRENT_GRABBED: Interactable
 static var DRAGGING_PARENT: Node2D
@@ -83,6 +90,8 @@ func _input(event: InputEvent) -> void:
 
 func interact():
 	OnInteracted.emit()
+	if interact_sound:
+		Globals.play_sfx(interact_sound)
 	await tween_to_scale(Vector2(.8,.8)).finished
 	await tween_to_scale(Vector2(1.1,1.1)).finished
 	tween_to_scale(Vector2.ONE)
@@ -96,7 +105,6 @@ func try_interact_with_item(item_that_is_interacting_with_me: Interactable):
 
 
 func _mouse_entered() -> void:
-#TODO	we can add a controller when we start building a level and we need to seperate interactables into different parents
 	if CURRENT_GRABBED != null:
 		return
 	isMouseOver = true
@@ -130,6 +138,8 @@ func _start_dragging():
 		CURRENT_GRABBED._stop_dragging()
 	if current_state == DragState.IN_INVENTORY:
 		inventory_slot_in.take_from_slot()
+	if start_drag_sound:
+		Globals.play_sfx(start_drag_sound)
 	current_state = DragState.DRAGGING
 	control.mouse_filter =Control.MOUSE_FILTER_IGNORE
 	reparent(DRAGGING_PARENT)
@@ -150,6 +160,8 @@ func _stop_dragging():
 		current_state = DragState.DROPPED
 		reparent(DROPPED_PARENT)
 		tween_to_scale(HIGHLIGHT_SCALE)
+	if stop_drag_sound:
+		Globals.play_sfx(stop_drag_sound)
 	control.mouse_filter =Control.MOUSE_FILTER_STOP
 	OnDropped.emit()
 	Events.OnDropItem.emit()

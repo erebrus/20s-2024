@@ -9,4 +9,5 @@ func on_interacted():
 		return
 	Logger.info("changing sprite on {x} to {y}".format({"x": parent_interactable.interactable_name,"y": new_sprite.resource_name}))
 	parent_interactable.sprite_2d.texture = new_sprite
+	parent_interactable.shadow.texture = new_sprite
 	super.on_interacted()

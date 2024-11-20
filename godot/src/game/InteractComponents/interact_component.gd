@@ -8,7 +8,8 @@ const HIGHLIGHT_OSCILATE_AMOUNT: float = .3
 @export var require_item_to_interact:= false
 @export var possible_items_needed_for_interaction: Array[String]
 @export var destroy_other_on_use := false
-
+@export var make_parent_not_interactable_after_interaction := false
+@export var successful_interact_sound: AudioStream
 var parent_interactable: Interactable
 
 var _player_is_dragging_a_matching_item := false
@@ -33,12 +34,15 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if _player_is_dragging_a_matching_item:
-		parent_interactable.sprite_2d.modulate = Color.WHITE + Color.WHITE * sin(Time.get_ticks_msec()*HIGHLIGHT_OSCILATE_SPEED /1000)*HIGHLIGHT_OSCILATE_AMOUNT
-		parent_interactable.sprite_2d.modulate.a = 1.0
+		parent_interactable.modulate = Color.WHITE + Color.WHITE * sin(Time.get_ticks_msec()*HIGHLIGHT_OSCILATE_SPEED /1000)*HIGHLIGHT_OSCILATE_AMOUNT
+		parent_interactable.modulate.a = 1.0
 
 
 func on_interacted():
-	pass
+	if successful_interact_sound:
+		Globals.play_sfx(successful_interact_sound)
+	if make_parent_not_interactable_after_interaction:
+		parent_interactable.interactable = false
 
 
 func on_try_item_interacted(item_interacting_with_me: Interactable):
@@ -62,4 +66,4 @@ func on_any_item_picked_up(name_of_item: String):
 
 func on_any_item_dropped():
 	_player_is_dragging_a_matching_item = false
-	parent_interactable.sprite_2d.modulate = Color.WHITE
+	parent_interactable.modulate = Color.WHITE

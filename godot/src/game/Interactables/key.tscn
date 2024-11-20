@@ -1,8 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://wpc5ikfef6hm"]
+[gd_scene load_steps=9 format=3 uid="uid://wpc5ikfef6hm"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_p5gb4"]
 [ext_resource type="Texture2D" uid="uid://tc2hhat5detk" path="res://assets/gfx/environment/key.png" id="2_3ooxg"]
+[ext_resource type="AudioStream" uid="uid://b4hf5vncvx84h" path="res://assets/sfx/Key_Jingle_1.mp3" id="2_lx506"]
 [ext_resource type="Script" path="res://src/game/shadow.gd" id="3_6i517"]
+[ext_resource type="AudioStream" uid="uid://bp5k5jnyr3rjn" path="res://assets/sfx/Key_Jingle_2.mp3" id="3_63udb"]
+[ext_resource type="AudioStream" uid="uid://bcumwadx3r42d" path="res://assets/sfx/Key_Jingle_3.mp3" id="4_jjfnl"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o36w5"]
+random_pitch = 1.1
+streams_count = 4
+stream_0/stream = ExtResource("2_lx506")
+stream_1/stream = ExtResource("3_63udb")
+stream_3/stream = ExtResource("4_jjfnl")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
 size = Vector2(119, 49)
@@ -11,6 +21,7 @@ size = Vector2(119, 49)
 script = ExtResource("1_p5gb4")
 interactable_name = "Bookshelf Key"
 draggable = true
+start_drag_sound = SubResource("AudioStreamRandomizer_o36w5")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

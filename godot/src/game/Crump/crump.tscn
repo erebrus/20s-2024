@@ -69,14 +69,15 @@ interactable_name = "Ronald Crump"
 position = Vector2(6, -106)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_yvevd")
+animation = &"walk"
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -64.0
-offset_top = -154.0
-offset_right = 58.0
-offset_bottom = 24.0
+offset_left = -56.0
+offset_top = -189.0
+offset_right = 66.0
+offset_bottom = -11.0
 
 [node name="VoicePlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_fqd1r")
@@ -100,3 +101,9 @@ voice_line_to_play = ExtResource("6_nesmu")
 require_item_to_interact = true
 possible_items_needed_for_interaction = Array[String](["Gun"])
 destroy_other_on_use = true
+
+[node name="InteractSound" type="AudioStreamPlayer" parent="."]
+
+[node name="StartDragSound" type="AudioStreamPlayer" parent="."]
+
+[node name="StopDragSound" type="AudioStreamPlayer" parent="."]

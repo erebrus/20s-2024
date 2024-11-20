@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://b3hggqphgs7ao" path="res://src/game/Interactables/pen.tscn" id="11_w60ay"]
 [ext_resource type="PackedScene" uid="uid://b40htq4kroxih" path="res://src/game/Interactables/telephone.tscn" id="14_di28k"]
 [ext_resource type="PackedScene" uid="uid://dr8bb6uuq4gbi" path="res://src/game/Interactables/safe.tscn" id="14_xwqhc"]
-[ext_resource type="PackedScene" uid="uid://bkojdawqhiabr" path="res://src/game/Interactables/bookshelf.tscn" id="15_5q3s4"]
+[ext_resource type="PackedScene" uid="uid://c3p0bew50yepm" path="res://src/game/Interactables/bookshelf.tscn" id="15_5q3s4"]
 [ext_resource type="PackedScene" uid="uid://cf23jy1081o00" path="res://src/game/Interactables/bidens_phone_number.tscn" id="16_lychd"]
 [ext_resource type="Texture2D" uid="uid://6ev25bx1qtcb" path="res://assets/gfx/environment/BG.png" id="19_6f6ip"]
 
@@ -109,10 +109,6 @@ position = Vector2(36, 412)
 [node name="BidensPhoneNumber" parent="DroppedParent" instance=ExtResource("16_lychd")]
 position = Vector2(996, 647)
 
-[node name="DraggingParent" type="Node2D" parent="."]
-position = Vector2(0, 2)
-script = ExtResource("5_xccsm")
-
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_p3gc0")
 
@@ -126,3 +122,7 @@ loop = false
 rotation = 0.00779205
 button = NodePath("../../../DroppedParent/BigBeautifulButton")
 speed = 33.0
+
+[node name="DraggingParent" type="Node2D" parent="."]
+position = Vector2(0, 2)
+script = ExtResource("5_xccsm")

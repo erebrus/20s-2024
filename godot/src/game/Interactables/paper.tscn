@@ -1,18 +1,45 @@
-[gd_scene load_steps=7 format=3 uid="uid://4l6y72w2g6cb"]
+[gd_scene load_steps=18 format=3 uid="uid://4l6y72w2g6cb"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_e6hh3"]
 [ext_resource type="Texture2D" uid="uid://di6fthmvf05r1" path="res://assets/gfx/environment/paper.png" id="2_arw0u"]
+[ext_resource type="AudioStream" uid="uid://ckeyt4f3tqvst" path="res://assets/sfx/Paper_Crumple_1.mp3" id="2_tavna"]
 [ext_resource type="Script" path="res://src/game/shadow.gd" id="3_b0hwh"]
+[ext_resource type="AudioStream" uid="uid://6n1bxkrx3up8" path="res://assets/sfx/Paper_Crumple_2.mp3" id="3_rn8do"]
 [ext_resource type="Script" path="res://src/game/InteractComponents/replace_on_interact.gd" id="4_5prg7"]
+[ext_resource type="AudioStream" uid="uid://dc5qke8ohnute" path="res://assets/sfx/Paper_Slide_2.mp3" id="4_n804w"]
+[ext_resource type="AudioStream" uid="uid://dnoe68uaoamq3" path="res://assets/sfx/Paper_Slide_1.mp3" id="5_58eop"]
 [ext_resource type="PackedScene" uid="uid://dbsbdt7rfgi37" path="res://src/game/Interactables/crudely_drawn_button.tscn" id="5_mt28b"]
+[ext_resource type="AudioStream" uid="uid://c7x6tvm4f7fuy" path="res://assets/sfx/Paper_Slide_3.mp3" id="6_vagu3"]
+[ext_resource type="AudioStream" uid="uid://cbbcd61cdmkkh" path="res://assets/sfx/Pen_Write_0.3secs.mp3" id="11_swxio"]
+[ext_resource type="AudioStream" uid="uid://b0qrhwy13026d" path="res://assets/sfx/Pen_Write_0.5secs.mp3" id="12_2e18a"]
+[ext_resource type="AudioStream" uid="uid://0xtbfo5gc4oq" path="res://assets/sfx/Pen_Write_2secs.mp3" id="13_e246e"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bph1r"]
+streams_count = 2
+stream_0/stream = ExtResource("2_tavna")
+stream_1/stream = ExtResource("3_rn8do")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4w0ya"]
+streams_count = 3
+stream_0/stream = ExtResource("4_n804w")
+stream_1/stream = ExtResource("5_58eop")
+stream_2/stream = ExtResource("6_vagu3")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
 size = Vector2(79, 104)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_q2pnk"]
+streams_count = 3
+stream_0/stream = ExtResource("11_swxio")
+stream_1/stream = ExtResource("12_2e18a")
+stream_2/stream = ExtResource("13_e246e")
 
 [node name="Paper" type="Node2D"]
 script = ExtResource("1_e6hh3")
 interactable_name = "Paper"
 draggable = true
+start_drag_sound = SubResource("AudioStreamRandomizer_bph1r")
+stop_drag_sound = SubResource("AudioStreamRandomizer_4w0ya")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -45,3 +72,4 @@ packed_scene_to_replace_with = ExtResource("5_mt28b")
 require_item_to_interact = true
 possible_items_needed_for_interaction = Array[String](["Pen"])
 destroy_other_on_use = true
+successful_interact_sound = SubResource("AudioStreamRandomizer_q2pnk")

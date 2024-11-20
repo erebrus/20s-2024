@@ -1,7 +1,6 @@
 class_name InventorySlot
 extends TweenableControl
 
-#TODO make it so that items can interact with eachtoher while in inventory
 
 var _is_mouse_over := false
 var interactable_on_button : Interactable

@@ -35,6 +35,7 @@ func _process(delta: float) -> void:
 		get_tree().quit()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	super._on_area_2d_area_entered(area)
 	var interacable_hit := area.get_parent()
 	if interacable_hit is Interactable:
 		if interacable_hit == button:
