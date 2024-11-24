@@ -1,13 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://rumvotveqal5"]
+[gd_scene load_steps=8 format=3 uid="uid://rumvotveqal5"]
 
 [ext_resource type="Script" path="res://src/common/globals.gd" id="1_noqpm"]
 [ext_resource type="Script" path="res://src/common/music_manager.gd" id="3_h14hn"]
+[ext_resource type="Script" path="res://src/common/tweenable_control.gd" id="3_ijqm3"]
+[ext_resource type="Script" path="res://src/game/time_display.gd" id="3_qpg84"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_q1nu8"]
 stream_count = 3
 stream_0/volume = 0.0
 stream_1/volume = -60.0
 stream_2/volume = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_7m6u2"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ylfa"]
+font_size = 100
 
 [node name="Globals" type="Node"]
 script = ExtResource("1_noqpm")
@@ -27,3 +35,103 @@ process_mode = 3
 [node name="SoundEffects" type="AudioStreamPlayer" parent="."]
 max_polyphony = 10
 bus = &"Sound"
+
+[node name="OverlayCanvas" type="CanvasLayer" parent="."]
+
+[node name="DarkBackground" type="ColorRect" parent="OverlayCanvas"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.913725)
+script = ExtResource("3_ijqm3")
+
+[node name="TimeDisplay" type="Label" parent="OverlayCanvas"]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -66.0
+offset_top = 27.0
+offset_right = -26.0
+offset_bottom = 50.0
+grow_horizontal = 0
+text = "123"
+label_settings = SubResource("LabelSettings_7m6u2")
+script = ExtResource("3_qpg84")
+
+[node name="WinDisplay" type="Control" parent="OverlayCanvas"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OverlayCanvas/WinDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 95
+alignment = 1
+
+[node name="Label" type="Label" parent="OverlayCanvas/WinDisplay/VBoxContainer"]
+layout_mode = 2
+text = "You Win!"
+label_settings = SubResource("LabelSettings_7ylfa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Replay" type="Button" parent="OverlayCanvas/WinDisplay/VBoxContainer"]
+custom_minimum_size = Vector2(700, 87.35)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 46
+text = "Would you like to play again?"
+
+[node name="LoseDisplay" type="Control" parent="OverlayCanvas"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OverlayCanvas/LoseDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 95
+alignment = 1
+
+[node name="Label" type="Label" parent="OverlayCanvas/LoseDisplay/VBoxContainer"]
+layout_mode = 2
+text = "You Lost!"
+label_settings = SubResource("LabelSettings_7ylfa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Replay" type="Button" parent="OverlayCanvas/LoseDisplay/VBoxContainer"]
+custom_minimum_size = Vector2(700, 87.35)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 46
+text = "Would you like to play again?"
+
+[connection signal="pressed" from="OverlayCanvas/WinDisplay/VBoxContainer/Replay" to="." method="restart_game"]
+[connection signal="pressed" from="OverlayCanvas/LoseDisplay/VBoxContainer/Replay" to="." method="restart_game"]

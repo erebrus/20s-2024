@@ -1,3 +1,4 @@
+class_name TimeDisplay
 extends Label
 
 var currentTime := 0.0

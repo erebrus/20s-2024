@@ -10,6 +10,7 @@ const HIGHLIGHT_OSCILATE_AMOUNT: float = .3
 @export var destroy_other_on_use := false
 @export var make_parent_not_interactable_after_interaction := false
 @export var successful_interact_sound: AudioStream
+@export var muliply_trump_walk_speed := 1.0
 var parent_interactable: Interactable
 
 var _player_is_dragging_a_matching_item := false
@@ -43,6 +44,7 @@ func on_interacted():
 		Globals.play_sfx(successful_interact_sound)
 	if make_parent_not_interactable_after_interaction:
 		parent_interactable.interactable = false
+	Globals.crump.speed *= muliply_trump_walk_speed
 
 
 func on_try_item_interacted(item_interacting_with_me: Interactable):

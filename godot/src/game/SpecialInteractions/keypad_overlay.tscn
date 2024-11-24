@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b4fcxvusqkasc" path="res://assets/gfx/environment/safety box.png" id="2_1vvhu"]
 [ext_resource type="Script" path="res://src/common/tweenable_control.gd" id="2_wm0mr"]
 [ext_resource type="AudioStream" uid="uid://dnl08h1ilt3ti" path="res://placeholders/sfx/safe_button_press.mp3" id="4_qxs8c"]
-[ext_resource type="AudioStream" uid="uid://uy1ctmud7u7f" path="res://placeholders/sfx/placeholder_open_safe.mp3" id="5_vhtja"]
+[ext_resource type="AudioStream" uid="uid://bolnjf0jqkmht" path="res://assets/sfx/safe_open.mp3" id="5_thswh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5q2yf"]
 atlas = ExtResource("2_1vvhu")
@@ -31,7 +31,7 @@ stream_0/stream = ExtResource("4_qxs8c")
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ennyi"]
 random_pitch = 1.1
 streams_count = 1
-stream_0/stream = ExtResource("5_vhtja")
+stream_0/stream = ExtResource("5_thswh")
 
 [node name="KeypadOverlay" type="CanvasLayer"]
 script = ExtResource("1_nkhys")

@@ -1,8 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://d4mejcu3ayh5b"]
+[gd_scene load_steps=18 format=3 uid="uid://d4mejcu3ayh5b"]
 
 [ext_resource type="PackedScene" uid="uid://w8lg7mqxi74r" path="res://src/game/Inventory/inventory.tscn" id="1_i6mi4"]
-[ext_resource type="Script" path="res://src/game/time_display.gd" id="2_84qxq"]
-[ext_resource type="Script" path="res://placeholders/win_text_display.gd" id="3_iyjpe"]
 [ext_resource type="Script" path="res://placeholders/dragging_parent.gd" id="5_xccsm"]
 [ext_resource type="PackedScene" uid="uid://cko6w8bt6ryxp" path="res://src/game/Crump/crump.tscn" id="6_3u3x4"]
 [ext_resource type="Texture2D" uid="uid://4mid5vq67co7" path="res://assets/gfx/environment/desk.png" id="7_t5ycq"]
@@ -13,14 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://b40htq4kroxih" path="res://src/game/Interactables/telephone.tscn" id="14_di28k"]
 [ext_resource type="PackedScene" uid="uid://dr8bb6uuq4gbi" path="res://src/game/Interactables/safe.tscn" id="14_xwqhc"]
 [ext_resource type="PackedScene" uid="uid://c3p0bew50yepm" path="res://src/game/Interactables/bookshelf.tscn" id="15_5q3s4"]
+[ext_resource type="PackedScene" uid="uid://dei0rh8jgw7ar" path="res://src/game/Interactables/bidens_dog.tscn" id="15_emdtw"]
+[ext_resource type="PackedScene" uid="uid://c64ipw8p1vjbp" path="res://src/game/Interactables/map.tscn" id="16_5u8ek"]
 [ext_resource type="PackedScene" uid="uid://cf23jy1081o00" path="res://src/game/Interactables/bidens_phone_number.tscn" id="16_lychd"]
+[ext_resource type="PackedScene" uid="uid://dl7flp2h7efo0" path="res://src/game/Interactables/tennis_ball.tscn" id="16_raeol"]
 [ext_resource type="Texture2D" uid="uid://6ev25bx1qtcb" path="res://assets/gfx/environment/BG.png" id="19_6f6ip"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_5c6lq"]
-font_size = 30
-
-[sub_resource type="LabelSettings" id="LabelSettings_62eyn"]
-font_size = 66
 
 [sub_resource type="Curve2D" id="Curve2D_p3gc0"]
 _data = {
@@ -42,35 +37,6 @@ mouse_filter = 2
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(512, 393)
 
-[node name="OverlayCanvas" type="CanvasLayer" parent="."]
-
-[node name="TimeDisplay" type="Label" parent="OverlayCanvas"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -66.0
-offset_top = 27.0
-offset_right = -26.0
-offset_bottom = 50.0
-grow_horizontal = 0
-text = "123"
-label_settings = SubResource("LabelSettings_5c6lq")
-script = ExtResource("2_84qxq")
-
-[node name="WinTextDisplay" type="Label" parent="OverlayCanvas"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Crump changes his mind on launching the nukes, you win!"
-label_settings = SubResource("LabelSettings_62eyn")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-script = ExtResource("3_iyjpe")
-
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(512, 393)
@@ -86,6 +52,7 @@ texture = ExtResource("7_t5ycq")
 layout_mode = 1
 
 [node name="DroppedParent" type="Node2D" parent="."]
+y_sort_enabled = true
 script = ExtResource("9_nwrvg")
 
 [node name="BookShelf" parent="DroppedParent" instance=ExtResource("15_5q3s4")]
@@ -104,24 +71,43 @@ position = Vector2(712, 343)
 position = Vector2(587, 326)
 
 [node name="WhitehousePhone" parent="DroppedParent" instance=ExtResource("14_di28k")]
-position = Vector2(36, 412)
+position = Vector2(9, 432)
 
 [node name="BidensPhoneNumber" parent="DroppedParent" instance=ExtResource("16_lychd")]
 position = Vector2(996, 647)
+
+[node name="TennisBall" parent="DroppedParent" instance=ExtResource("16_raeol")]
+position = Vector2(361, 346)
+
+[node name="BidensDog" parent="DroppedParent" node_paths=PackedStringArray("tennis_ball", "crump") instance=ExtResource("15_emdtw")]
+position = Vector2(433, 348)
+tennis_ball = NodePath("../TennisBall")
+crump = NodePath("../Crump")
+
+[node name="Map" parent="DroppedParent" instance=ExtResource("16_5u8ek")]
+position = Vector2(48, 250)
+
+[node name="Crump" parent="DroppedParent" node_paths=PackedStringArray("button", "path") instance=ExtResource("6_3u3x4")]
+position = Vector2(75, 604)
+rotation = -0.00779205
+button = NodePath("../BigBeautifulButton")
+speed = 33.0
+path = NodePath("../../Path2D/PathFollow2D")
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_p3gc0")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+y_sort_enabled = true
 position = Vector2(75, 604)
 rotation = -0.00779205
 rotates = false
 loop = false
 
-[node name="Crump" parent="Path2D/PathFollow2D" node_paths=PackedStringArray("button") instance=ExtResource("6_3u3x4")]
-rotation = 0.00779205
-button = NodePath("../../../DroppedParent/BigBeautifulButton")
-speed = 33.0
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
+remote_path = NodePath("../../../DroppedParent/Crump")
+update_rotation = false
+update_scale = false
 
 [node name="DraggingParent" type="Node2D" parent="."]
 position = Vector2(0, 2)

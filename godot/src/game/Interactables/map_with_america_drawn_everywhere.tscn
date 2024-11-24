@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0mfb4tic2mjk"]
+
+[ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_h5kym"]
+[ext_resource type="Texture2D" uid="uid://di6fthmvf05r1" path="res://assets/gfx/environment/paper.png" id="2_e4puc"]
+[ext_resource type="Script" path="res://src/game/shadow.gd" id="3_epakp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
+size = Vector2(88, 108)
+
+[node name="MapWithAmericaDrawnEverywhere" type="Node2D"]
+script = ExtResource("1_h5kym")
+interactable_name = "Map With America Written On Top of Every Country."
+draggable = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -43.0
+offset_top = -54.0
+offset_right = 47.0
+offset_bottom = 58.0
+
+[node name="Shadow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.329412)
+scale = Vector2(4, 4)
+texture = ExtResource("2_e4puc")
+script = ExtResource("3_epakp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_e4puc")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ga48g")

@@ -71,5 +71,4 @@ script = ExtResource("4_5prg7")
 packed_scene_to_replace_with = ExtResource("5_mt28b")
 require_item_to_interact = true
 possible_items_needed_for_interaction = Array[String](["Pen"])
-destroy_other_on_use = true
 successful_interact_sound = SubResource("AudioStreamRandomizer_q2pnk")

@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
 size = Vector2(126, 179)
 
-[node name="CrudelyDrawnButtonReplacement" type="Node2D"]
+[node name="CrudelyDrawnButtonReplacement" type="Node2D" groups=["Button"]]
 script = ExtResource("1_xu58i")
 interactable_name = "Crudely Drawn Button"
 interactable = false

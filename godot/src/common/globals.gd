@@ -4,6 +4,14 @@ const GAME_SCENE_PATH = "res://src/main.tscn"
 
 @onready var sound_effects: AudioStreamPlayer = $SoundEffects
 
+@onready var win_display: Control = %WinDisplay
+@onready var lose_display: Control = %LoseDisplay
+@onready var time_display: TimeDisplay = %TimeDisplay
+@onready var dark_background: TweenableControl = $OverlayCanvas/DarkBackground
+
+
+
+
 
 var master_volume:float = 100
 var music_volume:float = 100
@@ -49,13 +57,26 @@ func _ready():
 
 func start_game():
 	in_game=true
-
+	win_display.visible = false
+	lose_display.visible = false
+	time_display.visible = true
+	dark_background.modulate.a = 1
+	dark_background.tween_to_alpha(0,.5)
+	time_display.currentTime = 0
 	music_manager.fade_menu_music()
 	await get_tree().create_timer(1).timeout
 	music_manager.reset_synchronized_stream()
 
 	get_tree().change_scene_to_file(GAME_SCENE_PATH)
 	music_manager.fade_in_game_music()
+
+func restart_game():
+	get_tree().reload_current_scene()
+	dark_background.tween_to_alpha(0,.5)
+	win_display.visible = false
+	lose_display.visible = false
+	time_display.visible = true
+	time_display.currentTime = 0
 
 
 
@@ -72,9 +93,12 @@ func _init_logger():
 
 
 func do_lose():
-	get_tree().quit()
+	lose_display.visible = true
+
+	dark_background.tween_to_alpha(1,.5)
+
 
 func do_win():
 	Events.OnWinGame.emit()
-	await get_tree().create_timer(5).timeout
-	get_tree().quit()
+	win_display.visible = true
+	dark_background.tween_to_alpha(1,.5)

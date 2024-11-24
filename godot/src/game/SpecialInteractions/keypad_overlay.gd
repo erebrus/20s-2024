@@ -86,4 +86,4 @@ func open_safe():
 		if new_scene is Interactable:
 			Globals.inventory.add_item_to_inventory(new_scene)
 		Logger.info("{x} spawned {y}".format({"x": safe_interactable.interactable_name,"y": new_scene.interactable_name}))
-	queue_free()
+	visible = false

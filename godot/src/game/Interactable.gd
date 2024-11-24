@@ -47,6 +47,7 @@ signal OnOverlappedInteractablesChanged
 
 
 func _ready() -> void:
+	Events.OnCrumpReachedButton.connect(on_crump_reached_button)
 	control.tooltip_text = interactable_name
 	control.mouse_entered.connect(_mouse_entered)
 	control.mouse_exited.connect(_mouse_exited)
@@ -86,6 +87,12 @@ func _input(event: InputEvent) -> void:
 			Globals.inventory.add_item_to_inventory(self)
 	if event is InputEventMouseButton and event.button_index == 1 and CURRENT_GRABBED and CURRENT_GRABBED == self :
 		_stop_dragging()
+
+func on_crump_reached_button():
+	interactable = false
+	draggable = false
+	if CURRENT_GRABBED:
+		CURRENT_GRABBED._stop_dragging()
 
 
 func interact():
