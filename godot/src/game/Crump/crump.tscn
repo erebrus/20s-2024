@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cko6w8bt6ryxp"]
+[gd_scene load_steps=29 format=3 uid="uid://cko6w8bt6ryxp"]
 
 [ext_resource type="Script" path="res://src/game/RonaldCrump.gd" id="1_xpida"]
 [ext_resource type="AudioStream" uid="uid://c7vxjy7c77hp6" path="res://placeholders/sfx/voice_lines/placeholder_normal_button_ending.wav" id="2_fidsb"]
@@ -13,10 +13,17 @@
 [ext_resource type="Texture2D" uid="uid://5gdk7ayyai5r" path="res://assets/gfx/characters/grump-walking3.png" id="6_22qc8"]
 [ext_resource type="AudioStream" uid="uid://ddk6xth2csrhj" path="res://placeholders/sfx/voice_lines/placeholder_try_gun_on_trump.mp3" id="6_nesmu"]
 [ext_resource type="Texture2D" uid="uid://1m00he6ll0x5" path="res://assets/gfx/characters/grump-walking4.png" id="7_g4wa8"]
+[ext_resource type="Texture2D" uid="uid://vp7nevbm2ib1" path="res://assets/gfx/characters/grump-button1.png" id="7_jux4c"]
+[ext_resource type="Texture2D" uid="uid://dbt1bpg85yqcb" path="res://assets/gfx/characters/grump-button2.png" id="8_a5bty"]
 [ext_resource type="Texture2D" uid="uid://dymogcx31r5bg" path="res://assets/gfx/characters/grump-walking5.png" id="8_lr2ox"]
 [ext_resource type="Texture2D" uid="uid://dh1ko5ihokewj" path="res://assets/gfx/characters/grump-walking6.png" id="9_euxpf"]
+[ext_resource type="Texture2D" uid="uid://g1acwcpm1bnl" path="res://assets/gfx/characters/grump-button3.png" id="9_pptoy"]
+[ext_resource type="Texture2D" uid="uid://cqth3d7pdp24c" path="res://assets/gfx/characters/grump-button4.png" id="10_c7pca"]
 [ext_resource type="Texture2D" uid="uid://ceoepfpsgdx2" path="res://assets/gfx/characters/grump-walking7.png" id="10_pgjvj"]
 [ext_resource type="Texture2D" uid="uid://csn34jdx4y3ue" path="res://assets/gfx/characters/grump-walking8.png" id="11_hxqik"]
+[ext_resource type="Texture2D" uid="uid://c35ave053h16i" path="res://assets/gfx/characters/grump-button5.png" id="11_kbi27"]
+[ext_resource type="Texture2D" uid="uid://bwtnqoi1kt7tt" path="res://assets/gfx/characters/grump-button6.png" id="12_k6hia"]
+[ext_resource type="Texture2D" uid="uid://c7q78qfyw44p0" path="res://assets/gfx/characters/grump-button7.png" id="13_nu8gt"]
 [ext_resource type="AudioStream" uid="uid://cu3y2v7dh8veb" path="res://placeholders/sfx/voice_lines/placeholder_trump_bit_by_dog.wav" id="16_g5e7u"]
 [ext_resource type="AudioStream" uid="uid://bv1i7gnx4ecu8" path="res://placeholders/sfx/voice_lines/placeholder_fake_map_used.wav" id="19_27hw6"]
 
@@ -29,6 +36,32 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_jux4c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_a5bty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_pptoy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_c7pca")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_kbi27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_k6hia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_nu8gt")
+}],
+"loop": true,
+"name": &"push_button",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -75,7 +108,8 @@ interactable_name = "Ronald Crump"
 position = Vector2(6, -106)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_yvevd")
-animation = &"walk"
+animation = &"push_button"
+frame_progress = 0.964999
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

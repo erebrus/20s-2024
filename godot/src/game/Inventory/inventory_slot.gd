@@ -1,12 +1,17 @@
 class_name InventorySlot
 extends TweenableControl
 
+@export var empty_slot_texture: Texture2D
+@export var occupied_slot_texture: Texture2D
 
 var _is_mouse_over := false
 var interactable_on_button : Interactable
 
 @onready var item_hover_sound: AudioStreamPlayer = %ItemHoverSound
 @onready var item_drop_sound: AudioStreamPlayer = %ItemDropSound
+@onready var panel: TextureRect = $Panel
+
+
 
 
 func _ready() -> void:
@@ -21,6 +26,7 @@ func _input(event: InputEvent) -> void:
 
 
 func assign_item(item: Interactable, tween_to_position_time : float = 0.0):
+	panel.texture = occupied_slot_texture
 	interactable_on_button = item
 	item.inventory_slot_in = self
 	interactable_on_button.reparent(self)
@@ -53,6 +59,8 @@ func highlight():
 
 func dehighlight():
 	tween_to_scale(Vector2.ONE)
+	if !interactable_on_button:
+		panel.texture = empty_slot_texture
 
 
 func _on_mouse_exited() -> void:
@@ -67,5 +75,6 @@ func take_from_slot():
 	interactable_on_button.control.mouse_entered.disconnect(highlight)
 	interactable_on_button.control.mouse_exited.disconnect(dehighlight)
 	interactable_on_button = null
+	panel.texture = empty_slot_texture
 	item_drop_sound.play()
 	dehighlight()

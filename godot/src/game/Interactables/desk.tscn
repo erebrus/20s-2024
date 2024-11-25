@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://mifyh0xfcldi"]
+
+[ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_a65e7"]
+[ext_resource type="Texture2D" uid="uid://4mid5vq67co7" path="res://assets/gfx/environment/desk.png" id="2_2c1i1"]
+[ext_resource type="Script" path="res://src/game/shadow.gd" id="3_abhpk"]
+[ext_resource type="Script" path="res://src/game/InteractComponents/spawn_item_on_interact.gd" id="4_iv7cn"]
+[ext_resource type="PackedScene" uid="uid://wpc5ikfef6hm" path="res://src/game/Interactables/key.tscn" id="5_hju7i"]
+[ext_resource type="PackedScene" uid="uid://b3hggqphgs7ao" path="res://src/game/Interactables/pen.tscn" id="6_prhd6"]
+[ext_resource type="AudioStream" uid="uid://c4lhsl8r4rbs5" path="res://assets/sfx/Cabinet_Open.mp3" id="8_1dbg7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_garpc"]
+size = Vector2(285.005, 137.72)
+
+[node name="Desk" type="Node2D"]
+script = ExtResource("1_a65e7")
+interactable_name = "Desk"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -71.6445
+offset_top = -86.0
+offset_right = 196.356
+offset_bottom = 43.0
+rotation = 0.495674
+
+[node name="Shadow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.329412)
+position = Vector2(14.3555, 52)
+scale = Vector2(4, 4)
+texture = ExtResource("2_2c1i1")
+script = ExtResource("3_abhpk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(14.3555, 52)
+scale = Vector2(4, 4)
+texture = ExtResource("2_2c1i1")
+
+[node name="SpawnItemOnInteract" type="Node2D" parent="."]
+position = Vector2(3.35552, -7)
+script = ExtResource("4_iv7cn")
+packed_scenes_to_spawn = Array[PackedScene]([ExtResource("5_hju7i"), ExtResource("6_prhd6")])
+make_parent_not_interactable_after_interaction = true
+successful_interact_sound = ExtResource("8_1dbg7")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(3.35552, -7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(14.6165, 39.9551)
+rotation = 0.481711
+shape = SubResource("RectangleShape2D_garpc")

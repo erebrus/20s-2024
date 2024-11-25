@@ -21,6 +21,7 @@ func _ready() -> void:
 	update_display()
 	_safe_starting_position = safe_image.position
 	show_input_flash()
+	Events.OnCrumpReachedButton.connect(close_overlay)
 
 
 func open_overlay():

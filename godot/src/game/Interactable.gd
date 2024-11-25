@@ -98,7 +98,7 @@ func on_crump_reached_button():
 func interact():
 	OnInteracted.emit()
 	if interact_sound:
-		Globals.play_sfx(interact_sound)
+		Globals.sound_effects_manager.play_sfx(interact_sound)
 	await tween_to_scale(Vector2(.8,.8)).finished
 	await tween_to_scale(Vector2(1.1,1.1)).finished
 	tween_to_scale(Vector2.ONE)
@@ -146,7 +146,7 @@ func _start_dragging():
 	if current_state == DragState.IN_INVENTORY:
 		inventory_slot_in.take_from_slot()
 	if start_drag_sound:
-		Globals.play_sfx(start_drag_sound)
+		Globals.sound_effects_manager.play_sfx(start_drag_sound)
 	current_state = DragState.DRAGGING
 	control.mouse_filter =Control.MOUSE_FILTER_IGNORE
 	reparent(DRAGGING_PARENT)
@@ -168,7 +168,7 @@ func _stop_dragging():
 		reparent(DROPPED_PARENT)
 		tween_to_scale(HIGHLIGHT_SCALE)
 	if stop_drag_sound:
-		Globals.play_sfx(stop_drag_sound)
+		Globals.sound_effects_manager.play_sfx(stop_drag_sound)
 	control.mouse_filter =Control.MOUSE_FILTER_STOP
 	OnDropped.emit()
 	Events.OnDropItem.emit()

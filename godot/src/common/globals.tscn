@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://rumvotveqal5"]
+[gd_scene load_steps=10 format=3 uid="uid://rumvotveqal5"]
 
 [ext_resource type="Script" path="res://src/common/globals.gd" id="1_noqpm"]
+[ext_resource type="Script" path="res://src/common/sound_effects_manager.gd" id="3_0r7v4"]
 [ext_resource type="Script" path="res://src/common/music_manager.gd" id="3_h14hn"]
 [ext_resource type="Script" path="res://src/common/tweenable_control.gd" id="3_ijqm3"]
 [ext_resource type="Script" path="res://src/game/time_display.gd" id="3_qpg84"]
+[ext_resource type="PackedScene" uid="uid://b575js7drhtbr" path="res://src/common/sound_effect_prototype.tscn" id="4_1qi6w"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_q1nu8"]
 stream_count = 3
@@ -32,9 +34,9 @@ process_mode = 3
 
 [node name="murder_music" type="AudioStreamPlayer" parent="MusicManager"]
 
-[node name="SoundEffects" type="AudioStreamPlayer" parent="."]
-max_polyphony = 10
-bus = &"Sound"
+[node name="SoundEffectsManager" type="Node" parent="."]
+script = ExtResource("3_0r7v4")
+sound_effect_prototype = ExtResource("4_1qi6w")
 
 [node name="OverlayCanvas" type="CanvasLayer" parent="."]
 

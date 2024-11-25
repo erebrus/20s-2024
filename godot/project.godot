@@ -26,6 +26,7 @@ Types="*res://src/common/types.gd"
 Events="*res://src/common/events.gd"
 Globals="*res://src/common/globals.tscn"
 Logger="*res://addons/gs_logger/logger.gd"
+Shaker="*res://addons/shaker/src/Shaker.gd"
 
 [display]
 
@@ -35,7 +36,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/gs_logger/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/gs_logger/plugin.cfg", "res://addons/shaker/plugin.cfg")
 
 [global_group]
 
@@ -87,3 +88,4 @@ pan_camera={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

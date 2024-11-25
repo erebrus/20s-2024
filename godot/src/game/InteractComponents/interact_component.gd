@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 
 func on_interacted():
 	if successful_interact_sound:
-		Globals.play_sfx(successful_interact_sound)
+		Globals.sound_effects_manager.play_sfx(successful_interact_sound)
 	if make_parent_not_interactable_after_interaction:
 		parent_interactable.interactable = false
 	Globals.crump.speed *= muliply_trump_walk_speed

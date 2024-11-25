@@ -2,7 +2,6 @@ extends InteractComponent
 
 @export var number_of_times_this_can_be_interacted_with := 1
 @export var packed_scenes_to_spawn : Array[PackedScene]
-@export var random_jump_diameter := 200.0
 
 
 func on_interacted():
