@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://mifyh0xfcldi"]
+[gd_scene load_steps=10 format=3 uid="uid://mifyh0xfcldi"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_a65e7"]
 [ext_resource type="Texture2D" uid="uid://4mid5vq67co7" path="res://assets/gfx/environment/desk.png" id="2_2c1i1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://src/game/InteractComponents/spawn_item_on_interact.gd" id="4_iv7cn"]
 [ext_resource type="PackedScene" uid="uid://wpc5ikfef6hm" path="res://src/game/Interactables/key.tscn" id="5_hju7i"]
 [ext_resource type="PackedScene" uid="uid://b3hggqphgs7ao" path="res://src/game/Interactables/pen.tscn" id="6_prhd6"]
+[ext_resource type="PackedScene" uid="uid://cf23jy1081o00" path="res://src/game/Interactables/bidens_phone_number.tscn" id="7_2t76a"]
 [ext_resource type="AudioStream" uid="uid://c4lhsl8r4rbs5" path="res://assets/sfx/Cabinet_Open.mp3" id="8_1dbg7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_garpc"]
@@ -40,7 +41,7 @@ texture = ExtResource("2_2c1i1")
 [node name="SpawnItemOnInteract" type="Node2D" parent="."]
 position = Vector2(3.35552, -7)
 script = ExtResource("4_iv7cn")
-packed_scenes_to_spawn = Array[PackedScene]([ExtResource("5_hju7i"), ExtResource("6_prhd6")])
+packed_scenes_to_spawn = Array[PackedScene]([ExtResource("5_hju7i"), ExtResource("6_prhd6"), ExtResource("7_2t76a")])
 make_parent_not_interactable_after_interaction = true
 successful_interact_sound = ExtResource("8_1dbg7")
 

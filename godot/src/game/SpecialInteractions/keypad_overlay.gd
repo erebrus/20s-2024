@@ -26,7 +26,7 @@ func _ready() -> void:
 
 func open_overlay():
 	background.tween_to_alpha(.7,.1)
-	safe_image.tween_to_scale(Vector2.ONE,.3)
+	safe_image.tween_to_scale(Vector2.ONE * .7,.3)
 	safe_image.tween_to_position(background.size/2 - safe_image.size/2,.3)
 
 
@@ -76,7 +76,7 @@ func open_safe():
 	close_overlay()
 	open_safe_sound.play()
 	safe_interactable.interactable_name = "Open Safe"
-	safe_interactable.control.tooltip_text = "Open Safe"
+	#safe_interactable.control.tooltip_text = "Open Safe"
 	safe_interactable.sprite_2d.texture = open_safe_sprite
 	safe_interactable.shadow.texture = open_safe_sprite
 	safe_interactable.interactable = false

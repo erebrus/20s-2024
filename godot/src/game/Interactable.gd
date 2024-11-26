@@ -48,7 +48,7 @@ signal OnOverlappedInteractablesChanged
 
 func _ready() -> void:
 	Events.OnCrumpReachedButton.connect(on_crump_reached_button)
-	control.tooltip_text = interactable_name
+	#control.tooltip_text = interactable_name
 	control.mouse_entered.connect(_mouse_entered)
 	control.mouse_exited.connect(_mouse_exited)
 	control.gui_input.connect(_on_control_gui_input)
@@ -114,6 +114,7 @@ func try_interact_with_item(item_that_is_interacting_with_me: Interactable):
 func _mouse_entered() -> void:
 	if CURRENT_GRABBED != null:
 		return
+	Events.OnHoverItem.emit(self)
 	isMouseOver = true
 	if interactable:
 		highlight()
@@ -123,6 +124,7 @@ func _mouse_entered() -> void:
 
 func _mouse_exited() -> void:
 	isMouseOver = false
+	Events.OnStopHoverItem.emit(self)
 	de_highlight()
 	if draggable:
 		tween_to_rotation(0, .1)

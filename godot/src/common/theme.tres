@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bak1y7ym1k202"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bak1y7ym1k202"]
+
+[ext_resource type="FontFile" uid="uid://byef7l64rpty0" path="res://assets/fonts/MinimalPixel v2.ttf" id="1_mqhhv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gbaf"]
 content_margin_left = 4.0
@@ -12,5 +14,6 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [resource]
+default_font = ExtResource("1_mqhhv")
 TooltipLabel/colors/font_color = Color(0, 0, 0, 1)
 TooltipPanel/styles/panel = SubResource("StyleBoxFlat_6gbaf")

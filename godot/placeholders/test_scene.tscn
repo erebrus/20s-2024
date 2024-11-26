@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d4mejcu3ayh5b"]
+[gd_scene load_steps=27 format=3 uid="uid://d4mejcu3ayh5b"]
 
 [ext_resource type="Script" path="res://addons/shaker/src/Vector2/shaker_component2D.gd" id="1_femvc"]
 [ext_resource type="PackedScene" uid="uid://w8lg7mqxi74r" path="res://src/game/Inventory/inventory.tscn" id="1_i6mi4"]
@@ -18,10 +18,19 @@
 [ext_resource type="PackedScene" uid="uid://c3p0bew50yepm" path="res://src/game/Interactables/bookshelf.tscn" id="15_5q3s4"]
 [ext_resource type="PackedScene" uid="uid://dei0rh8jgw7ar" path="res://src/game/Interactables/bidens_dog.tscn" id="15_emdtw"]
 [ext_resource type="PackedScene" uid="uid://c64ipw8p1vjbp" path="res://src/game/Interactables/map.tscn" id="16_5u8ek"]
-[ext_resource type="PackedScene" uid="uid://cf23jy1081o00" path="res://src/game/Interactables/bidens_phone_number.tscn" id="16_lychd"]
 [ext_resource type="PackedScene" uid="uid://dl7flp2h7efo0" path="res://src/game/Interactables/tennis_ball.tscn" id="16_raeol"]
 [ext_resource type="Texture2D" uid="uid://6ev25bx1qtcb" path="res://assets/gfx/environment/BG.png" id="19_6f6ip"]
 [ext_resource type="AudioStream" uid="uid://b84yhjxl60bh1" path="res://placeholders/sfx/placeholder_nuclear_blast.mp3" id="21_84lu4"]
+[ext_resource type="Script" path="res://placeholders/hovered_tooltip.gd" id="23_q3jte"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gx2rm"]
+font_size = 35
+font_color = Color(1, 0.980667, 0.96, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 15
+shadow_color = Color(0, 0, 0, 0.211765)
+shadow_offset = Vector2(-5, 5)
 
 [sub_resource type="Resource" id="Resource_pm5bf"]
 script = ExtResource("3_43ngb")
@@ -51,6 +60,7 @@ _data = {
 point_count = 4
 
 [node name="TestScene" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -77,6 +87,27 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("1_r74cq")
 script = ExtResource("2_ehyxy")
+
+[node name="HoveredTooltip" type="Label" parent="."]
+z_index = 10
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 435.0
+offset_top = -132.0
+offset_right = -434.0
+offset_bottom = -102.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "
+"
+label_settings = SubResource("LabelSettings_gx2rm")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("23_q3jte")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(509.17, 389.529)
@@ -110,13 +141,10 @@ script = ExtResource("9_nwrvg")
 position = Vector2(797, 391)
 
 [node name="Safe" parent="DroppedParent" instance=ExtResource("14_xwqhc")]
-position = Vector2(587, 326)
+position = Vector2(578, 339)
 
 [node name="WhitehousePhone" parent="DroppedParent" instance=ExtResource("14_di28k")]
 position = Vector2(9, 432)
-
-[node name="BidensPhoneNumber" parent="DroppedParent" instance=ExtResource("16_lychd")]
-position = Vector2(996, 647)
 
 [node name="TennisBall" parent="DroppedParent" instance=ExtResource("16_raeol")]
 position = Vector2(361, 346)
@@ -127,11 +155,10 @@ tennis_ball = NodePath("../TennisBall")
 crump = NodePath("../Crump")
 
 [node name="Map" parent="DroppedParent" instance=ExtResource("16_5u8ek")]
-position = Vector2(48, 250)
+position = Vector2(584, 160)
 
 [node name="Crump" parent="DroppedParent" node_paths=PackedStringArray("button", "path", "camera_shaker", "lose_background") instance=ExtResource("6_3u3x4")]
 position = Vector2(75, 604)
-rotation = -0.00779205
 button = NodePath("../BigBeautifulButton")
 speed = 33.0
 path = NodePath("../../Path2D/PathFollow2D")

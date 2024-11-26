@@ -115,9 +115,8 @@ frame_progress = 0.964999
 layout_mode = 3
 anchors_preset = 0
 offset_left = -56.0
-offset_top = -189.0
-offset_right = 66.0
-offset_bottom = -11.0
+offset_top = -205.0
+offset_right = 70.0
 
 [node name="VoicePlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_fqd1r")

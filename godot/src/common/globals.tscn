@@ -68,6 +68,7 @@ script = ExtResource("3_qpg84")
 [node name="WinDisplay" type="Control" parent="OverlayCanvas"]
 unique_name_in_owner = true
 visible = false
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

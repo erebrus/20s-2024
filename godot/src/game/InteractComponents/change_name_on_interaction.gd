@@ -11,5 +11,5 @@ func on_interacted():
 		return
 	Logger.info("renaming {x} to {y}".format({"x": parent_interactable.interactable_name,"y": new_name}))
 	parent_interactable.interactable_name = new_name
-	parent_interactable.control.tooltip_text = new_name
+	#parent_interactable.control.tooltip_text = new_name
 	super.on_interacted()
