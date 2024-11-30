@@ -11,6 +11,7 @@ func _ready() -> void:
 	super._ready()
 	tennis_ball.OnDropped.connect(on_tennis_ball_drop)
 	crump.OnInteractedWithItem.connect(on_ball_interact_with_crump)
+	$AnimatedSprite2D.play("default")
 
 func on_ball_interact_with_crump(interactable: Interactable):
 	if interactable.interactable_name == "Tennis Ball":
