@@ -160,7 +160,7 @@ position = Vector2(584, 160)
 [node name="Crump" parent="DroppedParent" node_paths=PackedStringArray("button", "path", "camera_shaker", "lose_background") instance=ExtResource("6_3u3x4")]
 position = Vector2(75, 604)
 button = NodePath("../BigBeautifulButton")
-speed = 33.0
+speed = 35.0
 path = NodePath("../../Path2D/PathFollow2D")
 camera_shaker = NodePath("../../Camera2D/ShakerComponent2D")
 lose_background = NodePath("../../LoseBackground")

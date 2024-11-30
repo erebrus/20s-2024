@@ -1,6 +1,6 @@
 extends Node
 
-const GAME_SCENE_PATH = "res://src/main.tscn"
+const GAME_SCENE_PATH = "res://placeholders/test_scene.tscn"
 
 @onready var sound_effects: AudioStreamPlayer = %SoundEffects
 @onready var sound_effects_manager: SoundEffectsManager = $SoundEffectsManager
@@ -59,15 +59,17 @@ func start_game():
 	in_game=true
 	win_display.visible = false
 	lose_display.visible = false
-	time_display.visible = true
 	dark_background.modulate.a = 1
 	time_display.currentTime = 0
 	music_manager.fade_menu_music()
 	sound_effects_manager.reset_sound_effects()
 	await get_tree().create_timer(1).timeout
-	music_manager.reset_synchronized_stream()
+	#music_manager.reset_synchronized_stream()
 
 	get_tree().change_scene_to_file(GAME_SCENE_PATH)
+	dark_background.tween_to_alpha(0,.5)
+	time_display.set_process(true)
+	time_display.visible = true
 	music_manager.fade_in_game_music()
 
 func restart_game():

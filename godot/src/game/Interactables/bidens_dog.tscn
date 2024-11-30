@@ -1,16 +1,50 @@
-[gd_scene load_steps=6 format=3 uid="uid://dei0rh8jgw7ar"]
+[gd_scene load_steps=10 format=3 uid="uid://dei0rh8jgw7ar"]
 
-[ext_resource type="Script" path="res://src/game/bidens_dog.gd" id="1_p3vb3"]
-[ext_resource type="AudioStream" uid="uid://6qkqomucmjfv" path="res://placeholders/sfx/placeholder_dog_chasing_ball.mp3" id="2_fcnkv"]
-[ext_resource type="Texture2D" uid="uid://ibvc6sd7gd0n" path="res://placeholders/gfx/placeholder_bidens_dog.png" id="2_p7too"]
+[ext_resource type="Script" path="res://src/game/Interactables/bidens_dog.gd" id="1_74qhp"]
 [ext_resource type="Script" path="res://src/game/shadow.gd" id="3_tt84l"]
+[ext_resource type="Texture2D" uid="uid://d1dehqsent2si" path="res://assets/gfx/environment/Dog.png" id="5_4sa5g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_527w7"]
+atlas = ExtResource("5_4sa5g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqb1v"]
+atlas = ExtResource("5_4sa5g")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mymba"]
+atlas = ExtResource("5_4sa5g")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2h3h"]
+atlas = ExtResource("5_4sa5g")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uoqjc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_527w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqb1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mymba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2h3h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
 size = Vector2(92, 107)
 
 [node name="BidensDog" type="Node2D"]
-script = ExtResource("1_p3vb3")
-start_chasing_ball_sound = ExtResource("2_fcnkv")
+script = ExtResource("1_74qhp")
 interactable_name = "Major"
 
 [node name="Control" type="Control" parent="."]
@@ -24,15 +58,17 @@ offset_bottom = 6.0
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(0, 0, 0, 0.329412)
-position = Vector2(0, -48)
+position = Vector2(1, -28)
 scale = Vector2(2, 2)
-texture = ExtResource("2_p7too")
+texture = ExtResource("5_4sa5g")
+hframes = 4
 script = ExtResource("3_tt84l")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -48)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(12, -26)
 scale = Vector2(2, 2)
-texture = ExtResource("2_p7too")
+sprite_frames = SubResource("SpriteFrames_uoqjc")
+frame_progress = 0.949835
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, -48)

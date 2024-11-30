@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://tew5nggvlbv0"]
+[gd_scene load_steps=4 format=3 uid="uid://tew5nggvlbv0"]
 
+[ext_resource type="Texture2D" uid="uid://6ev25bx1qtcb" path="res://assets/gfx/environment/BG.png" id="1_icl1y"]
 [ext_resource type="Script" path="res://src/start_screen/start_screen.gd" id="1_yk0mb"]
+[ext_resource type="FontFile" uid="uid://byef7l64rpty0" path="res://assets/fonts/MinimalPixel v2.ttf" id="3_e8ruo"]
 
 [node name="StartScreen" type="TextureRect"]
 anchors_preset = 15
@@ -8,15 +10,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("1_icl1y")
 script = ExtResource("1_yk0mb")
 
 [node name="StartButton" type="TextureButton" parent="."]
-custom_minimum_size = Vector2(440, 235)
+custom_minimum_size = Vector2(360, 120)
 layout_mode = 0
-offset_left = 1440.0
-offset_top = 560.0
-offset_right = 1880.0
-offset_bottom = 795.0
+offset_left = 623.0
+offset_top = 508.0
+offset_right = 983.0
+offset_bottom = 628.0
 
 [node name="Label" type="Label" parent="StartButton"]
 layout_mode = 1
@@ -28,7 +31,8 @@ offset_top = -11.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 96
+theme_override_fonts/font = ExtResource("3_e8ruo")
+theme_override_font_sizes/font_size = 64
 text = "START"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true

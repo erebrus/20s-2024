@@ -1,16 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://c64ipw8p1vjbp"]
+[gd_scene load_steps=12 format=3 uid="uid://c64ipw8p1vjbp"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_3j0ht"]
 [ext_resource type="Texture2D" uid="uid://di6fthmvf05r1" path="res://assets/gfx/environment/paper.png" id="2_4uvgq"]
 [ext_resource type="Script" path="res://src/game/shadow.gd" id="3_hokos"]
+[ext_resource type="Texture2D" uid="uid://dpk4sxe7m4346" path="res://assets/gfx/environment/world map.png" id="4_o4mvg"]
 [ext_resource type="Script" path="res://src/game/InteractComponents/replace_on_interact.gd" id="4_wqkij"]
 [ext_resource type="PackedScene" uid="uid://d0mfb4tic2mjk" path="res://src/game/Interactables/map_with_america_drawn_everywhere.tscn" id="5_h0333"]
 [ext_resource type="AudioStream" uid="uid://cbbcd61cdmkkh" path="res://assets/sfx/Pen_Write_0.3secs.mp3" id="6_aybkg"]
 [ext_resource type="AudioStream" uid="uid://b0qrhwy13026d" path="res://assets/sfx/Pen_Write_0.5secs.mp3" id="7_culpl"]
 [ext_resource type="AudioStream" uid="uid://0xtbfo5gc4oq" path="res://assets/sfx/Pen_Write_2secs.mp3" id="8_6n1ku"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
-size = Vector2(88, 106)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iq2q2"]
+size = Vector2(163, 106)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v2kua"]
 streams_count = 3
@@ -40,13 +41,13 @@ script = ExtResource("3_hokos")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
-texture = ExtResource("2_4uvgq")
+texture = ExtResource("4_o4mvg")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_ga48g")
+position = Vector2(2.5, 2)
+shape = SubResource("RectangleShape2D_iq2q2")
 
 [node name="ReplaceOnInteract" type="Node2D" parent="."]
 script = ExtResource("4_wqkij")
