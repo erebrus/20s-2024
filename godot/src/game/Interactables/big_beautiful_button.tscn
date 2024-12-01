@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cywcur4k68hdr"]
+[gd_scene load_steps=12 format=3 uid="uid://cywcur4k68hdr"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_lsihm"]
 [ext_resource type="Texture2D" uid="uid://bgfciwlrpj6s" path="res://assets/gfx/environment/red button.png" id="2_k4dnq"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://src/game/InteractComponents/replace_on_interact.gd" id="5_jbcpc"]
 [ext_resource type="PackedScene" uid="uid://c4a58iode7wuh" path="res://src/game/Interactables/missing_button.tscn" id="6_qxqop"]
 [ext_resource type="AudioStream" uid="uid://dw2erm2q18t5u" path="res://assets/sfx/Screwdriver_PryOpen.mp3" id="8_h08gv"]
+[ext_resource type="PackedScene" uid="uid://dxr2u5j75ged2" path="res://src/game/Interactables/fake_on_real_button.tscn" id="9_ej2k6"]
+[ext_resource type="AudioStream" uid="uid://ckeyt4f3tqvst" path="res://assets/sfx/Paper_Crumple_1.mp3" id="10_6dkog"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5gqln"]
 size = Vector2(53, 47)
@@ -61,3 +63,12 @@ require_item_to_interact = true
 possible_items_needed_for_interaction = Array[String](["Screwdriver"])
 destroy_other_on_use = true
 successful_interact_sound = ExtResource("8_h08gv")
+
+[node name="ReplaceOnFakeButton" type="Node2D" parent="."]
+position = Vector2(2, -52)
+script = ExtResource("5_jbcpc")
+packed_scene_to_replace_with = ExtResource("9_ej2k6")
+require_item_to_interact = true
+possible_items_needed_for_interaction = Array[String](["Crudely Drawn Button"])
+destroy_other_on_use = true
+successful_interact_sound = ExtResource("10_6dkog")

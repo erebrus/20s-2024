@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-const PASSWORD := "1234"
+const PASSWORD := "2689"
 const INDICATOR_SECONDS_PER_FLASH : float= .4
 @export var safe_interactable: Interactable
 @export var open_safe_sprite: Texture2D

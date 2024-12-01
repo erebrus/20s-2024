@@ -12,9 +12,8 @@ extends Interactable
 @export var made_in_china_line: AudioStream
 @export var crudely_drawn_button_line: AudioStream
 @export var missing_button_line: AudioStream
+@export var fake_on_real_button_line: AudioStream
 
-
-@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var voice_player: AudioStreamPlayer2D = $VoicePlayer
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -27,7 +26,6 @@ var _moveSpeed := 20.0
 func _ready() -> void:
 	super._ready()
 	Globals.crump = self
-	navigation_agent_2d.target_position = button.global_position
 	area_2d.area_entered.connect(_on_area_2d_area_entered)
 	sprite.play("walk")
 	sprite.frame_changed.connect(on_frame_changed)
@@ -36,7 +34,6 @@ func _process(delta: float) -> void:
 	super._process(delta)
 	if pause_movement:
 		return
-	#global_position = global_position.move_toward(navigation_agent_2d.get_next_path_position(),_moveSpeed * delta)
 	if !has_reached_button:
 		path.progress+=speed*delta
 		if path.progress_ratio == 1:
@@ -71,7 +68,9 @@ func on_reached_button():
 	if button.interactable_name == "Big Beautiful Button" :
 		trigger_lose(normal_button_line)
 		return
-
+	if button.interactable_name == "Button with Fake Button on Top" :
+		trigger_lose(fake_on_real_button_line)
+		return
 	Logger.error("missing button type")
 	Globals.do_lose()
 
@@ -84,14 +83,14 @@ func trigger_win(voice_line: AudioStream):
 
 func trigger_lose(voice_line: AudioStream):
 	await change_voice_line(voice_line)
+	Globals.do_lose()
 	await get_tree().create_timer(voice_player.stream.get_length()-3).timeout
 	Globals.sound_effects_manager.trigger_nuclear_ending()
 	camera_shaker.play_shake()
 	await get_tree().create_timer(2).timeout
 	Globals.sound_effects_manager.play_sfx(blast_sound)
 	lose_background.tween_to_alpha(1,3)
-	await get_tree().create_timer(6).timeout
-	Globals.do_lose()
+
 
 
 func change_voice_line(new_stream: AudioStream):

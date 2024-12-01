@@ -22,15 +22,14 @@ stream_2/stream = ExtResource("8_6n1ku")
 [node name="Map" type="Node2D"]
 script = ExtResource("1_3j0ht")
 interactable_name = "Map"
-draggable = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -47.0
-offset_top = -55.0
-offset_right = 48.0
-offset_bottom = 59.0
+offset_left = -77.0
+offset_top = -47.0
+offset_right = 83.0
+offset_bottom = 54.0
 
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true

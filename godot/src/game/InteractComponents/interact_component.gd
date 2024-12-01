@@ -3,7 +3,7 @@ extends Node2D
 
 
 const HIGHLIGHT_OSCILATE_SPEED: float = 8.0
-const HIGHLIGHT_OSCILATE_AMOUNT: float = .3
+const HIGHLIGHT_OSCILATE_AMOUNT: float = .5
 
 @export var require_item_to_interact:= false
 @export var possible_items_needed_for_interaction: Array[String]

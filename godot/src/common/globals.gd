@@ -74,6 +74,7 @@ func start_game():
 
 func restart_game():
 	get_tree().reload_current_scene()
+	Events.OnGameReload.emit()
 	sound_effects_manager.reset_sound_effects()
 	dark_background.tween_to_alpha(0,.5)
 	win_display.visible = false
@@ -97,7 +98,7 @@ func _init_logger():
 
 func do_lose():
 	lose_display.visible = true
-	dark_background.tween_to_alpha(1,.5)
+	dark_background.tween_to_alpha(1,.3)
 
 
 func do_win():

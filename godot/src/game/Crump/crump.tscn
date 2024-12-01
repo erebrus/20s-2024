@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cko6w8bt6ryxp"]
+[gd_scene load_steps=33 format=3 uid="uid://cko6w8bt6ryxp"]
 
 [ext_resource type="Script" path="res://src/game/RonaldCrump.gd" id="1_xpida"]
 [ext_resource type="AudioStream" uid="uid://c7vxjy7c77hp6" path="res://placeholders/sfx/voice_lines/placeholder_normal_button_ending.wav" id="2_fidsb"]
@@ -11,11 +11,13 @@
 [ext_resource type="Script" path="res://src/game/InteractComponents/trigger_trump_voice_line_on_interact.gd" id="5_d403u"]
 [ext_resource type="Texture2D" uid="uid://c10f5mj5p0sop" path="res://assets/gfx/characters/grump-walking2.png" id="5_k127q"]
 [ext_resource type="Texture2D" uid="uid://5gdk7ayyai5r" path="res://assets/gfx/characters/grump-walking3.png" id="6_22qc8"]
-[ext_resource type="AudioStream" uid="uid://ddk6xth2csrhj" path="res://placeholders/sfx/voice_lines/placeholder_try_gun_on_trump.mp3" id="6_nesmu"]
+[ext_resource type="AudioStream" uid="uid://b13tn0x5dmecc" path="res://placeholders/sfx/placeholder_trump_interact_1.mp3" id="6_sljdv"]
 [ext_resource type="Texture2D" uid="uid://1m00he6ll0x5" path="res://assets/gfx/characters/grump-walking4.png" id="7_g4wa8"]
 [ext_resource type="Texture2D" uid="uid://vp7nevbm2ib1" path="res://assets/gfx/characters/grump-button1.png" id="7_jux4c"]
+[ext_resource type="AudioStream" uid="uid://bgqobepfc0btk" path="res://placeholders/sfx/placeholder_trump_interact_2.mp3" id="7_omtpa"]
 [ext_resource type="Texture2D" uid="uid://dbt1bpg85yqcb" path="res://assets/gfx/characters/grump-button2.png" id="8_a5bty"]
 [ext_resource type="Texture2D" uid="uid://dymogcx31r5bg" path="res://assets/gfx/characters/grump-walking5.png" id="8_lr2ox"]
+[ext_resource type="AudioStream" uid="uid://bawinijw4btp" path="res://placeholders/sfx/placeholder_trump_interact_3.mp3" id="8_tr716"]
 [ext_resource type="Texture2D" uid="uid://dh1ko5ihokewj" path="res://assets/gfx/characters/grump-walking6.png" id="9_euxpf"]
 [ext_resource type="Texture2D" uid="uid://g1acwcpm1bnl" path="res://assets/gfx/characters/grump-button3.png" id="9_pptoy"]
 [ext_resource type="Texture2D" uid="uid://cqth3d7pdp24c" path="res://assets/gfx/characters/grump-button4.png" id="10_c7pca"]
@@ -26,6 +28,13 @@
 [ext_resource type="Texture2D" uid="uid://c7q78qfyw44p0" path="res://assets/gfx/characters/grump-button7.png" id="13_nu8gt"]
 [ext_resource type="AudioStream" uid="uid://cu3y2v7dh8veb" path="res://placeholders/sfx/voice_lines/placeholder_trump_bit_by_dog.wav" id="16_g5e7u"]
 [ext_resource type="AudioStream" uid="uid://bv1i7gnx4ecu8" path="res://placeholders/sfx/voice_lines/placeholder_fake_map_used.wav" id="19_27hw6"]
+[ext_resource type="AudioStream" uid="uid://ch7nn4a0llsqp" path="res://placeholders/sfx/placeholder_try_gun_on_trump.mp3" id="24_igpy4"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_14wyr"]
+streams_count = 3
+stream_0/stream = ExtResource("6_sljdv")
+stream_1/stream = ExtResource("7_omtpa")
+stream_2/stream = ExtResource("8_tr716")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yvevd"]
 animations = [{
@@ -102,7 +111,9 @@ normal_button_line = ExtResource("2_fidsb")
 made_in_china_line = ExtResource("2_i0pml")
 crudely_drawn_button_line = ExtResource("4_8wtpj")
 missing_button_line = ExtResource("4_ymyq8")
+fake_on_real_button_line = ExtResource("2_fidsb")
 interactable_name = "Ronald Crump"
+interact_sound = SubResource("AudioStreamRandomizer_14wyr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(6, -106)
@@ -124,9 +135,6 @@ volume_db = -8.05
 autoplay = true
 bus = &"Sound"
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
-
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(8, -27)
 
@@ -136,10 +144,10 @@ shape = SubResource("RectangleShape2D_074sm")
 
 [node name="ChangeVoiceLineGun" type="Node2D" parent="."]
 script = ExtResource("5_d403u")
-voice_line_to_play = ExtResource("6_nesmu")
+voice_line_to_play = ExtResource("24_igpy4")
 require_item_to_interact = true
 possible_items_needed_for_interaction = Array[String](["Gun"])
-destroy_other_on_use = true
+muliply_trump_walk_speed = 3.0
 
 [node name="ChangeVoiceLineOnDogBite" type="Node2D" parent="."]
 script = ExtResource("5_d403u")
