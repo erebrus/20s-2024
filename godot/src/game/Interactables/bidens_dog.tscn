@@ -107,7 +107,7 @@ position = Vector2(13, -49)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_uoqjc")
 animation = &"walk"
-frame_progress = 0.300855
+frame_progress = 0.853128
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, -48)

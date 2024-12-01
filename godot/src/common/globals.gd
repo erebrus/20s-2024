@@ -81,6 +81,7 @@ func restart_game():
 	lose_display.visible = false
 	time_display.visible = true
 	time_display.currentTime = 0
+	time_display.set_process(true)
 
 
 
