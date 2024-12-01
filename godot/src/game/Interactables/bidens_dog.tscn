@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dei0rh8jgw7ar"]
+[gd_scene load_steps=18 format=3 uid="uid://dei0rh8jgw7ar"]
 
 [ext_resource type="Script" path="res://src/game/bidens_dog.gd" id="1_p3vb3"]
 [ext_resource type="AudioStream" uid="uid://6qkqomucmjfv" path="res://placeholders/sfx/placeholder_dog_chasing_ball.mp3" id="2_4glsp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://src/game/InteractComponents/replace_on_interact.gd" id="4_2qoc2"]
 [ext_resource type="AudioStream" uid="uid://d2x15m7ujoum8" path="res://placeholders/sfx/placeholder_dog_shot.mp3" id="5_0s0sb"]
 [ext_resource type="Texture2D" uid="uid://d1dehqsent2si" path="res://assets/gfx/environment/Dog.png" id="5_4sa5g"]
+[ext_resource type="Texture2D" uid="uid://ddou4nc6ast5i" path="res://assets/gfx/environment/Dog walk.png" id="5_q2mlr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_527w7"]
 atlas = ExtResource("5_4sa5g")
@@ -21,6 +22,22 @@ region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a2h3h"]
 atlas = ExtResource("5_4sa5g")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ne4i"]
+atlas = ExtResource("5_q2mlr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gl3fx"]
+atlas = ExtResource("5_q2mlr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhul8"]
+atlas = ExtResource("5_q2mlr")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_136f3"]
+atlas = ExtResource("5_q2mlr")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uoqjc"]
@@ -41,6 +58,23 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ne4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gl3fx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhul8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_136f3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
@@ -72,7 +106,8 @@ script = ExtResource("3_tt84l")
 position = Vector2(13, -49)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_uoqjc")
-frame_progress = 0.190235
+animation = &"walk"
+frame_progress = 0.300855
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, -48)
