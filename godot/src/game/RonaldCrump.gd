@@ -54,8 +54,6 @@ func on_reached_button():
 	button = get_tree().get_first_node_in_group("Button")
 	Events.OnCrumpReachedButton.emit()
 	pause_movement = true
-	if voice_player.playing:
-		await voice_player.finished
 	if button.interactable_name == "Big Beautiful Chinese Button":
 		trigger_lose(made_in_china_line)
 		return
@@ -76,13 +74,13 @@ func on_reached_button():
 
 
 func trigger_win(voice_line: AudioStream):
-	await change_voice_line(voice_line)
+	change_voice_line(voice_line)
 	await voice_player.finished
 	Globals.do_win()
 
 
 func trigger_lose(voice_line: AudioStream):
-	await change_voice_line(voice_line)
+	change_voice_line(voice_line)
 	Globals.do_lose()
 	await get_tree().create_timer(voice_player.stream.get_length()-3).timeout
 	Globals.sound_effects_manager.trigger_nuclear_ending()

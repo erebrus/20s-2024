@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3p0bew50yepm"]
+[gd_scene load_steps=12 format=3 uid="uid://c3p0bew50yepm"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_ukxq2"]
 [ext_resource type="Texture2D" uid="uid://smxl8pt51t0u" path="res://assets/gfx/environment/bookshelf.png" id="2_2txpc"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://src/game/InteractComponents/spawn_item_on_interact.gd" id="4_fjsov"]
 [ext_resource type="PackedScene" uid="uid://4l6y72w2g6cb" path="res://src/game/Interactables/paper.tscn" id="5_wy82e"]
 [ext_resource type="PackedScene" uid="uid://cms5h57n02xqp" path="res://src/game/Interactables/screwdriver.tscn" id="6_dxepx"]
-[ext_resource type="PackedScene" uid="uid://cnb1byuadu5q6" path="res://src/game/Interactables/password.tscn" id="7_t0v4j"]
 [ext_resource type="Script" path="res://src/game/InteractComponents/change_sprite_on_interaction.gd" id="8_6lml1"]
 [ext_resource type="AudioStream" uid="uid://c4lhsl8r4rbs5" path="res://assets/sfx/Cabinet_Open.mp3" id="9_4y07v"]
 
@@ -47,7 +46,7 @@ texture = SubResource("AtlasTexture_bi31w")
 
 [node name="SpawnItemOnInteract" type="Node2D" parent="."]
 script = ExtResource("4_fjsov")
-packed_scenes_to_spawn = Array[PackedScene]([ExtResource("5_wy82e"), ExtResource("6_dxepx"), ExtResource("7_t0v4j")])
+packed_scenes_to_spawn = Array[PackedScene]([ExtResource("5_wy82e"), ExtResource("6_dxepx")])
 require_item_to_interact = true
 possible_items_needed_for_interaction = Array[String](["Bookshelf Key"])
 destroy_other_on_use = true
