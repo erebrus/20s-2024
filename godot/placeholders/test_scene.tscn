@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d4mejcu3ayh5b"]
+[gd_scene load_steps=28 format=3 uid="uid://d4mejcu3ayh5b"]
 
 [ext_resource type="Script" path="res://addons/shaker/src/Vector2/shaker_component2D.gd" id="1_femvc"]
 [ext_resource type="PackedScene" uid="uid://w8lg7mqxi74r" path="res://src/game/Inventory/inventory.tscn" id="1_i6mi4"]
@@ -58,6 +58,11 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 75, 604, 0, 0, 0, 0, 444, 579, 0, 0, 0, 0, 604, 538, 0, 0, 0, 0, 726, 462)
 }
 point_count = 4
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ieoqm"]
+vertices = PackedVector2Array(899.344, 585.453, 930.617, 656.82, 72.6484, 647.133, 834.102, 554.742, 661.773, 441.211, 77.2969, 617.227, 134.773, 568.852, 624.992, 385.07, 488.922, 360.242, 345.906, 344.219, 454.438, 322.883, 320.148, 369.992, 183.25, 449.68, 140.563, 454.898)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2, 5, 6), PackedInt32Array(7, 4, 6, 8), PackedInt32Array(9, 10, 8, 6, 11), PackedInt32Array(12, 11, 6), PackedInt32Array(12, 6, 13)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(61, 657, 946, 667, 907, 578, 839, 546, 669, 434, 631, 376, 494, 351, 458, 312, 341, 335, 314, 362, 180, 440, 131, 446, 125, 564, 68, 612)])
 
 [node name="TestScene" type="Control"]
 texture_filter = 1
@@ -131,6 +136,7 @@ layout_mode = 1
 position = Vector2(210, 275)
 
 [node name="Desk" parent="." instance=ExtResource("5_f4t7k")]
+z_index = -1
 position = Vector2(797, 396)
 
 [node name="DroppedParent" type="Node2D" parent="."]
@@ -141,7 +147,7 @@ script = ExtResource("9_nwrvg")
 position = Vector2(797, 391)
 
 [node name="Safe" parent="DroppedParent" instance=ExtResource("14_xwqhc")]
-position = Vector2(578, 339)
+position = Vector2(574, 253)
 
 [node name="WhitehousePhone" parent="DroppedParent" instance=ExtResource("14_di28k")]
 position = Vector2(9, 432)
@@ -184,3 +190,6 @@ update_scale = false
 [node name="DraggingParent" type="Node2D" parent="."]
 position = Vector2(0, 2)
 script = ExtResource("5_xccsm")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." groups=["NavMesh"]]
+navigation_polygon = SubResource("NavigationPolygon_ieoqm")

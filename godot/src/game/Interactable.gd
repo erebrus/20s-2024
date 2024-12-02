@@ -32,10 +32,12 @@ static var CURRENT_GRABBED: Interactable
 static var DRAGGING_PARENT: Node2D
 static var DROPPED_PARENT: Node2D
 
+
 var inventory_slot_in : InventorySlot
 var isMouseOver := false
 var current_state:= DragState.DROPPED
 var overlappingInteractables : Array[Interactable]
+var _nav_mesh: NavigationRegion2D
 
 var _click_timer:float = 0.0
 
@@ -47,6 +49,7 @@ signal OnOverlappedInteractablesChanged
 
 
 func _ready() -> void:
+	_nav_mesh = get_tree().get_first_node_in_group("NavMesh")
 	Events.OnCrumpReachedButton.connect(on_crump_reached_button)
 	#control.tooltip_text = interactable_name
 	control.mouse_entered.connect(_mouse_entered)
@@ -102,16 +105,18 @@ func interact():
 		Globals.sound_effects_manager.play_sfx(interact_sound)
 	else:
 		Globals.sound_effects_manager.play_default_interact_sound()
-	await tween_to_scale(Vector2(.8,.8)).finished
-	await tween_to_scale(Vector2(1.1,1.1)).finished
-	tween_to_scale(Vector2.ONE)
+	if current_state != DragState.IN_INVENTORY:
+		await tween_to_scale(Vector2(.8,.8)).finished
+		await tween_to_scale(Vector2(1.1,1.1)).finished
+		tween_to_scale(Vector2.ONE)
 
 
 func try_interact_with_item(item_that_is_interacting_with_me: Interactable):
 	OnInteractedWithItem.emit(item_that_is_interacting_with_me)
-	await tween_to_scale(Vector2(.8,.8)).finished
-	await tween_to_scale(Vector2(1.1,1.1)).finished
-	tween_to_scale(Vector2.ONE)
+	if current_state != DragState.IN_INVENTORY:
+		await tween_to_scale(Vector2(.8,.8)).finished
+		await tween_to_scale(Vector2(1.1,1.1)).finished
+		tween_to_scale(Vector2.ONE)
 
 
 func _mouse_entered() -> void:
@@ -146,6 +151,8 @@ func de_highlight():
 
 
 func _start_dragging():
+	if position_tween and position_tween.is_running():
+		position_tween.kill()
 	if CURRENT_GRABBED and is_instance_valid(CURRENT_GRABBED):
 		CURRENT_GRABBED._stop_dragging()
 	if current_state == DragState.IN_INVENTORY:
@@ -168,15 +175,30 @@ func _stop_dragging():
 	if area_2d:
 		for overlapping_interactable in overlappingInteractables:
 			overlapping_interactable.try_interact_with_item(self)
-	if current_state != DragState.IN_INVENTORY:
-		current_state = DragState.DROPPED
-		reparent(DROPPED_PARENT)
-		tween_to_scale(HIGHLIGHT_SCALE)
 	if stop_drag_sound and current_state != DragState.IN_INVENTORY:
 		Globals.sound_effects_manager.play_sfx(stop_drag_sound)
 	control.mouse_filter =Control.MOUSE_FILTER_STOP
-	OnDropped.emit()
-	Events.OnDropItem.emit()
+
+
+	if current_state != DragState.IN_INVENTORY:
+		tween_to_scale(HIGHLIGHT_SCALE)
+
+		#	i did this little switcheroo so any object depending on this will know its final position
+		var _position_on_map := NavigationServer2D.map_get_closest_point(get_world_2d().navigation_map,global_position)
+		var _starting_position := global_position
+		global_position = _position_on_map
+
+		Events.OnDropItem.emit()
+		OnDropped.emit()
+
+		global_position = _starting_position
+		await tween_to_position(_position_on_map,_starting_position.distance_to(_position_on_map)/ 500).finished
+		current_state = DragState.DROPPED
+		reparent(DROPPED_PARENT)
+
+	else:
+		Events.OnDropItem.emit()
+		OnDropped.emit()
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:

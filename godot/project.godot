@@ -43,6 +43,7 @@ enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/
 [global_group]
 
 Button=""
+NavMesh=""
 
 [gui]
 

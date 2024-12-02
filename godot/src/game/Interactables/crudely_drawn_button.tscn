@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
 size = Vector2(61, 60)
 
-[node name="CrudelyDrawnButton" type="Node2D" groups=["Button"]]
+[node name="CrudelyDrawnButton" type="Node2D"]
 script = ExtResource("1_fmwhj")
 interactable_name = "Crudely Drawn Button"
 draggable = true

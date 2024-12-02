@@ -17,7 +17,7 @@ func on_ball_interact_with_crump(interactable: Interactable):
 	if interactable.interactable_name == "Tennis Ball":
 		following_crump = true
 		sprite.play("walk")
-		
+
 func on_tennis_ball_drop():
 	if tennis_ball.current_state == DragState.IN_INVENTORY:
 		return
@@ -41,4 +41,3 @@ func _process(delta: float) -> void:
 			sprite.play("default")
 		else:
 			sprite.play("walk")
-			

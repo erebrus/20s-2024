@@ -1,8 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://dei0rh8jgw7ar"]
+[gd_scene load_steps=17 format=3 uid="uid://dei0rh8jgw7ar"]
 
 [ext_resource type="Script" path="res://src/game/bidens_dog.gd" id="1_p3vb3"]
 [ext_resource type="AudioStream" uid="uid://6qkqomucmjfv" path="res://placeholders/sfx/placeholder_dog_chasing_ball.mp3" id="2_4glsp"]
-[ext_resource type="Script" path="res://src/game/shadow.gd" id="3_tt84l"]
 [ext_resource type="Script" path="res://src/game/InteractComponents/replace_on_interact.gd" id="4_2qoc2"]
 [ext_resource type="AudioStream" uid="uid://d2x15m7ujoum8" path="res://placeholders/sfx/placeholder_dog_shot.mp3" id="5_0s0sb"]
 [ext_resource type="Texture2D" uid="uid://d1dehqsent2si" path="res://assets/gfx/environment/Dog.png" id="5_4sa5g"]
@@ -92,15 +91,6 @@ offset_left = -41.0
 offset_top = -99.0
 offset_right = 49.0
 offset_bottom = 6.0
-
-[node name="Shadow" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-modulate = Color(0, 0, 0, 0.329412)
-position = Vector2(1, -28)
-scale = Vector2(2, 2)
-texture = ExtResource("5_4sa5g")
-hframes = 4
-script = ExtResource("3_tt84l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(13, -49)

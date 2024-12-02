@@ -315,10 +315,10 @@ script = ExtResource("7_83eg4")
 [node name="Paper" type="TextureRect" parent="DraggingDemo"]
 visible = false
 layout_mode = 0
-offset_left = 201.0
-offset_top = 111.0
-offset_right = 241.0
-offset_bottom = 151.0
+offset_left = -266.0
+offset_top = 113.0
+offset_right = -226.0
+offset_bottom = 153.0
 rotation = -1.57079
 scale = Vector2(4, 4)
 mouse_filter = 2
@@ -351,10 +351,10 @@ texture = ExtResource("4_jncda")
 
 [node name="Mouse" type="TextureRect" parent="DraggingDemo"]
 layout_mode = 0
-offset_left = 239.0
-offset_top = -22.0
-offset_right = 259.0
-offset_bottom = 2.99999
+offset_left = 84.0
+offset_top = 52.0
+offset_right = 104.0
+offset_bottom = 77.0
 scale = Vector2(4, 4)
 mouse_filter = 2
 texture = ExtResource("8_o7nhj")
