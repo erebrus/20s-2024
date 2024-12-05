@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxuotlt8h1bp4"]
+
+[ext_resource type="Script" path="res://placeholders/gun_cutscene_manager.gd" id="1_acvq4"]
+[ext_resource type="Texture2D" uid="uid://cg4ik1m55l23y" path="res://assets/gfx/environment/gun-cutscene1.png" id="2_q8s25"]
+[ext_resource type="Texture2D" uid="uid://ban40cnpmnqcj" path="res://assets/gfx/environment/gun-cutscene2.png" id="3_lupx6"]
+[ext_resource type="Texture2D" uid="uid://wocjwydwiebh" path="res://assets/gfx/environment/gun-cutscene3.png" id="4_53jsg"]
+[ext_resource type="AudioStream" uid="uid://cv0wf4i2n7erk" path="res://assets/sfx/gun_cock_cutscene.wav" id="5_pgy6e"]
+[ext_resource type="AudioStream" uid="uid://ou6iyhhhxkfl" path="res://assets/sfx/gunshot 1.wav" id="6_0na88"]
+[ext_resource type="AudioStream" uid="uid://dv1sswrdvnhfd" path="res://assets/sfx/jail_cell_cutscene.wav" id="7_ljxam"]
+
+[node name="GunSceneManager" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_acvq4")
+
+[node name="Scene1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 106.0
+offset_right = 253.0
+offset_bottom = 250.0
+scale = Vector2(4, 4)
+texture = ExtResource("2_q8s25")
+
+[node name="Scene2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -3.0
+offset_top = 106.0
+offset_right = 253.0
+offset_bottom = 250.0
+scale = Vector2(4, 4)
+texture = ExtResource("3_lupx6")
+
+[node name="Scene3" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -3.0
+offset_top = 106.0
+offset_right = 253.0
+offset_bottom = 250.0
+scale = Vector2(4, 4)
+texture = ExtResource("4_53jsg")
+
+[node name="sfx1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_pgy6e")
+
+[node name="sfx2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_0na88")
+
+[node name="sfx3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ljxam")

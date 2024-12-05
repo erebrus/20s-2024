@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d4mejcu3ayh5b"]
+[gd_scene load_steps=29 format=3 uid="uid://d4mejcu3ayh5b"]
 
 [ext_resource type="Script" path="res://addons/shaker/src/Vector2/shaker_component2D.gd" id="1_femvc"]
 [ext_resource type="PackedScene" uid="uid://w8lg7mqxi74r" path="res://src/game/Inventory/inventory.tscn" id="1_i6mi4"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://dl7flp2h7efo0" path="res://src/game/Interactables/tennis_ball.tscn" id="16_raeol"]
 [ext_resource type="Texture2D" uid="uid://6ev25bx1qtcb" path="res://assets/gfx/environment/BG.png" id="19_6f6ip"]
 [ext_resource type="AudioStream" uid="uid://b84yhjxl60bh1" path="res://placeholders/sfx/placeholder_nuclear_blast.mp3" id="21_84lu4"]
+[ext_resource type="PackedScene" uid="uid://bxuotlt8h1bp4" path="res://src/game/gun_scene_manager.tscn" id="23_kr7u3"]
 [ext_resource type="Script" path="res://placeholders/hovered_tooltip.gd" id="23_q3jte"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gx2rm"]
@@ -193,3 +194,13 @@ script = ExtResource("5_xccsm")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." groups=["NavMesh"]]
 navigation_polygon = SubResource("NavigationPolygon_ieoqm")
+
+[node name="GunSceneManager" parent="." instance=ExtResource("23_kr7u3")]
+visible = false
+z_index = 10
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1

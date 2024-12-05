@@ -8,3 +8,5 @@ signal OnPickupItem(String) #name of item grabbed
 signal OnDropItem
 signal OnCrumpReachedButton
 signal OnGameReload
+
+signal OnCrumpGunShot()

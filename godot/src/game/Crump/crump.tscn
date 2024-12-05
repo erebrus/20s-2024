@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://c7q78qfyw44p0" path="res://assets/gfx/characters/grump-button7.png" id="13_nu8gt"]
 [ext_resource type="AudioStream" uid="uid://cu3y2v7dh8veb" path="res://placeholders/sfx/voice_lines/placeholder_trump_bit_by_dog.wav" id="16_g5e7u"]
 [ext_resource type="AudioStream" uid="uid://bv1i7gnx4ecu8" path="res://placeholders/sfx/voice_lines/placeholder_fake_map_used.wav" id="19_27hw6"]
-[ext_resource type="AudioStream" uid="uid://ch7nn4a0llsqp" path="res://placeholders/sfx/placeholder_try_gun_on_trump.mp3" id="24_igpy4"]
+[ext_resource type="Script" path="res://src/game/Crump/gun_cutscene.gd" id="29_r5307"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_14wyr"]
 streams_count = 3
@@ -142,13 +142,6 @@ position = Vector2(8, -27)
 position = Vector2(-1, -74.5)
 shape = SubResource("RectangleShape2D_074sm")
 
-[node name="ChangeVoiceLineGun" type="Node2D" parent="."]
-script = ExtResource("5_d403u")
-voice_line_to_play = ExtResource("24_igpy4")
-require_item_to_interact = true
-possible_items_needed_for_interaction = Array[String](["Gun"])
-muliply_trump_walk_speed = 3.0
-
 [node name="ChangeVoiceLineOnDogBite" type="Node2D" parent="."]
 script = ExtResource("5_d403u")
 voice_line_to_play = ExtResource("16_g5e7u")
@@ -163,3 +156,9 @@ voice_line_to_play = ExtResource("19_27hw6")
 require_item_to_interact = true
 possible_items_needed_for_interaction = Array[String](["Map With America Written On Top of Every Country."])
 destroy_other_on_use = true
+
+[node name="GunCutscene" type="Node2D" parent="."]
+script = ExtResource("29_r5307")
+require_item_to_interact = true
+possible_items_needed_for_interaction = Array[String](["Gun"])
+muliply_trump_walk_speed = 0.0

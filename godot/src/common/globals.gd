@@ -100,7 +100,8 @@ func _init_logger():
 func do_lose():
 	lose_display.visible = true
 	dark_background.tween_to_alpha(1,.3)
-
+	time_display.visible = false
+	time_display.set_process(false)
 
 func do_win():
 	Events.OnWinGame.emit()
