@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://d4mejcu3ayh5b"]
+[gd_scene load_steps=30 format=3 uid="uid://d4mejcu3ayh5b"]
 
 [ext_resource type="Script" path="res://addons/shaker/src/Vector2/shaker_component2D.gd" id="1_femvc"]
 [ext_resource type="PackedScene" uid="uid://w8lg7mqxi74r" path="res://src/game/Inventory/inventory.tscn" id="1_i6mi4"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://b84yhjxl60bh1" path="res://placeholders/sfx/placeholder_nuclear_blast.mp3" id="21_84lu4"]
 [ext_resource type="PackedScene" uid="uid://bxuotlt8h1bp4" path="res://src/game/gun_scene_manager.tscn" id="23_kr7u3"]
 [ext_resource type="Script" path="res://placeholders/hovered_tooltip.gd" id="23_q3jte"]
+[ext_resource type="PackedScene" uid="uid://byl3gsfsk3juu" path="res://src/game/dog_gun_scene_manager.tscn" id="24_vbpdx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gx2rm"]
 font_size = 35
@@ -56,7 +57,7 @@ __follow_timeline = false
 
 [sub_resource type="Curve2D" id="Curve2D_p3gc0"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 75, 604, 0, 0, 0, 0, 444, 579, 0, 0, 0, 0, 604, 538, 0, 0, 0, 0, 726, 462)
+"points": PackedVector2Array(0, 0, 0, 0, 75, 604, 0, 0, 0, 0, 444, 579, 0, 0, 0, 0, 604, 538, 0, 0, 0, 0, 726, 470)
 }
 point_count = 4
 
@@ -138,20 +139,20 @@ position = Vector2(210, 275)
 
 [node name="Desk" parent="." instance=ExtResource("5_f4t7k")]
 z_index = -1
-position = Vector2(797, 396)
+position = Vector2(787, 404)
 
 [node name="DroppedParent" type="Node2D" parent="."]
 y_sort_enabled = true
 script = ExtResource("9_nwrvg")
 
 [node name="BigBeautifulButton" parent="DroppedParent" instance=ExtResource("9_vpcxb")]
-position = Vector2(797, 391)
+position = Vector2(796, 395)
 
 [node name="Safe" parent="DroppedParent" instance=ExtResource("14_xwqhc")]
 position = Vector2(574, 253)
 
 [node name="WhitehousePhone" parent="DroppedParent" instance=ExtResource("14_di28k")]
-position = Vector2(9, 432)
+position = Vector2(44, 420)
 
 [node name="TennisBall" parent="DroppedParent" instance=ExtResource("16_raeol")]
 position = Vector2(361, 346)
@@ -198,6 +199,14 @@ navigation_polygon = SubResource("NavigationPolygon_ieoqm")
 [node name="GunSceneManager" parent="." instance=ExtResource("23_kr7u3")]
 visible = false
 z_index = 10
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="DogGunSceneManager" parent="." instance=ExtResource("24_vbpdx")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0

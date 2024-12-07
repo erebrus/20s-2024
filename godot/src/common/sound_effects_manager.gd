@@ -5,7 +5,7 @@ extends Node
 @export var default_interact_sound: AudioStream
 
 var low_pass_filter : AudioEffectLowPassFilter
-
+var volumeTween: Tween
 
 
 func _ready() -> void:
@@ -13,7 +13,10 @@ func _ready() -> void:
 	Events.OnGameReload.connect(kill_all_sounds)
 
 func reset_sound_effects():
-	AudioServer.set_bus_effect_enabled(1,0,false)
+	if volumeTween and volumeTween.is_running():
+		volumeTween.kill()
+	low_pass_filter.cutoff_hz = 5000
+	SetVolumeForSFX(0)
 
 
 func play_default_interact_sound():
@@ -33,7 +36,17 @@ func kill_all_sounds():
 
 func trigger_nuclear_ending():
 	low_pass_filter.cutoff_hz = 5000
-	AudioServer.set_bus_effect_enabled(1,0,true)
+	volumeTween = create_tween().set_parallel(true)
+	volumeTween.tween_property(low_pass_filter,"cutoff_hz",400,9)
+	volumeTween.tween_method(SetVolumeForSFX,0,-20,9)
 
-	var tween := create_tween()
-	tween.tween_property(low_pass_filter,"cutoff_hz",400,1)
+
+func trigger_good_ending():
+	volumeTween = create_tween().set_parallel(true)
+	await get_tree().create_timer(5).timeout
+	volumeTween.tween_method(SetVolumeForSFX,0,-20,9)
+
+
+func SetVolumeForSFX(vol: float):
+	var sfx_index = AudioServer.get_bus_index("Sound")
+	AudioServer.set_bus_volume_db(sfx_index, vol)

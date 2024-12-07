@@ -7,9 +7,11 @@ extends ColorRect
 @onready var sfx_1: AudioStreamPlayer = $sfx1
 @onready var sfx_2: AudioStreamPlayer = $sfx2
 @onready var sfx_3: AudioStreamPlayer = $sfx3
+@onready var bite_animation: AnimationPlayer = $BiteAnimation
+
 
 func _ready() -> void:
-	Events.OnCrumpGunShot.connect(play)
+	Events.OnDogGunShot.connect(play)
 
 func play():
 	show()
@@ -24,4 +26,6 @@ func play():
 	sfx_3.play()
 	scene_3.show()
 	await get_tree().create_timer(frame_duration).timeout
-	Globals.do_lose("You Missed!")
+	bite_animation.play("Bite")
+	await bite_animation.animation_finished
+	Globals.do_lose("You were killed by Commander!")

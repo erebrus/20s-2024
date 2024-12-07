@@ -75,6 +75,7 @@ func on_reached_button():
 
 func trigger_win(voice_line: AudioStream):
 	change_voice_line(voice_line)
+	Globals.sound_effects_manager.trigger_good_ending()
 	await voice_player.finished
 	Globals.do_win()
 
@@ -82,8 +83,8 @@ func trigger_win(voice_line: AudioStream):
 func trigger_lose(voice_line: AudioStream):
 	change_voice_line(voice_line)
 	Globals.do_lose()
-	await get_tree().create_timer(voice_player.stream.get_length()-3).timeout
 	Globals.sound_effects_manager.trigger_nuclear_ending()
+	await get_tree().create_timer(voice_player.stream.get_length()-3).timeout
 	camera_shaker.play_shake()
 	await get_tree().create_timer(2).timeout
 	Globals.sound_effects_manager.play_sfx(blast_sound)

@@ -1,5 +1,5 @@
 class_name Shadow
-extends Sprite2D
+extends Node2D
 
 var pickupTween: Tween
 var parent_interactable: Interactable

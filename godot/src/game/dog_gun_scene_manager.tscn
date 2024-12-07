@@ -1,0 +1,219 @@
+[gd_scene load_steps=14 format=3 uid="uid://byl3gsfsk3juu"]
+
+[ext_resource type="Script" path="res://placeholders/dog_gun_cutscene_manager.gd" id="1_i2f4k"]
+[ext_resource type="Texture2D" uid="uid://wuk7ceyk0ibj" path="res://assets/gfx/environment/gun-cutscene-dog.png" id="2_u41ae"]
+[ext_resource type="Texture2D" uid="uid://cvhtef8kejaog" path="res://assets/gfx/environment/jaw-top.png" id="3_rw7m3"]
+[ext_resource type="Texture2D" uid="uid://01vi1fsxkwqy" path="res://assets/gfx/environment/jaw-bottom.png" id="4_ihc17"]
+[ext_resource type="AudioStream" uid="uid://k6nkf5t1ckvf" path="res://placeholders/sfx/placeholder_dog_bites_trump.mp3" id="5_ia0w3"]
+[ext_resource type="AudioStream" uid="uid://cv0wf4i2n7erk" path="res://assets/sfx/gun_cock_cutscene.wav" id="5_q5ncc"]
+[ext_resource type="AudioStream" uid="uid://ou6iyhhhxkfl" path="res://assets/sfx/gunshot 1.wav" id="6_7v8fv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4pri"]
+atlas = ExtResource("2_u41ae")
+region = Rect2(0, 0, 86.5623, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytv2l"]
+atlas = ExtResource("2_u41ae")
+region = Rect2(85.8673, 0, 89.7959, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyqtv"]
+atlas = ExtResource("2_u41ae")
+region = Rect2(175, 0, 81, 144)
+
+[sub_resource type="Animation" id="Animation_vy5d6"]
+resource_name = "Bite"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BiteAnimation/TopJaw:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-3, -777), Vector2(-3, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BiteAnimation/BottomJaw:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(5, 772), Vector2(5, 4)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BiteAnimation/TopJaw:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BiteAnimation/BottomJaw:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_m8r6f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BiteAnimation/TopJaw:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BiteAnimation/BottomJaw:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BiteAnimation/TopJaw:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BiteAnimation/BottomJaw:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sfwr8"]
+_data = {
+"Bite": SubResource("Animation_vy5d6"),
+"RESET": SubResource("Animation_m8r6f")
+}
+
+[node name="DogGunSceneManager" type="ColorRect"]
+visible = false
+z_index = 10
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_i2f4k")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -31.0
+offset_top = -18.0
+offset_right = 239.0
+offset_bottom = 183.0
+scale = Vector2(4, 4)
+color = Color(0, 0, 0, 1)
+
+[node name="Scene1" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -3.0
+offset_top = 106.0
+offset_right = 253.0
+offset_bottom = 250.0
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_f4pri")
+stretch_mode = 2
+
+[node name="Scene2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 341.0
+offset_top = 106.0
+offset_right = 511.0
+offset_bottom = 250.0
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_ytv2l")
+stretch_mode = 2
+
+[node name="Scene3" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 697.0
+offset_top = 106.0
+offset_right = 778.0
+offset_bottom = 250.0
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_tyqtv")
+stretch_mode = 2
+
+[node name="BiteAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sfwr8")
+}
+
+[node name="TopJaw" type="TextureRect" parent="BiteAnimation"]
+visible = false
+z_index = 11
+offset_right = 256.0
+offset_bottom = 192.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("3_rw7m3")
+stretch_mode = 2
+
+[node name="BottomJaw" type="TextureRect" parent="BiteAnimation"]
+visible = false
+z_index = 11
+offset_right = 256.0
+offset_bottom = 192.0
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("4_ihc17")
+stretch_mode = 2
+
+[node name="sfx1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_q5ncc")
+
+[node name="sfx2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_7v8fv")
+
+[node name="sfx3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ia0w3")
+volume_db = -7.0

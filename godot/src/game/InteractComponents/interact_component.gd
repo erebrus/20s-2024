@@ -15,7 +15,8 @@ var parent_interactable: Interactable
 
 var _player_is_dragging_a_matching_item := false
 
-# TODO add sound/ vfx on successful interaction
+signal OnInteracted
+
 
 
 
@@ -45,6 +46,7 @@ func on_interacted():
 	if make_parent_not_interactable_after_interaction:
 		parent_interactable.interactable = false
 	Globals.crump.speed *= muliply_trump_walk_speed
+	OnInteracted.emit()
 
 
 func on_try_item_interacted(item_interacting_with_me: Interactable):

@@ -10,3 +10,4 @@ signal OnCrumpReachedButton
 signal OnGameReload
 
 signal OnCrumpGunShot()
+signal OnDogGunShot()

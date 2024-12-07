@@ -1,8 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxr2u5j75ged2"]
+[gd_scene load_steps=12 format=3 uid="uid://dxr2u5j75ged2"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_n3832"]
 [ext_resource type="Texture2D" uid="uid://bgfciwlrpj6s" path="res://assets/gfx/environment/red button.png" id="2_qiksv"]
-[ext_resource type="Texture2D" uid="uid://ddyvt10qeb8xq" path="res://assets/gfx/environment/paper_red button.png" id="3_pqwya"]
+[ext_resource type="Texture2D" uid="uid://bgwoussjj8xo8" path="res://assets/gfx/environment/paper_red button-sheet.png" id="3_ghcvu"]
+[ext_resource type="Script" path="res://src/game/InteractComponents/replace_on_interact.gd" id="4_oiywg"]
+[ext_resource type="PackedScene" uid="uid://c4a58iode7wuh" path="res://src/game/Interactables/missing_button.tscn" id="5_iskx2"]
+[ext_resource type="AudioStream" uid="uid://dw2erm2q18t5u" path="res://assets/sfx/Screwdriver_PryOpen.mp3" id="6_m1mxr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucw11"]
+atlas = ExtResource("3_ghcvu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhlpf"]
+atlas = ExtResource("3_ghcvu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26we0"]
+atlas = ExtResource("3_ghcvu")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m8xvd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucw11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhlpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26we0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5gqln"]
 size = Vector2(59, 56)
@@ -24,10 +56,13 @@ position = Vector2(4, -16)
 scale = Vector2(4, 4)
 texture = ExtResource("2_qiksv")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(21, -33)
+[node name="Sprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -29)
 scale = Vector2(4, 4)
-texture = ExtResource("3_pqwya")
+sprite_frames = SubResource("SpriteFrames_m8xvd")
+autoplay = "default"
+frame = 2
+frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(2, -52)
@@ -35,3 +70,12 @@ position = Vector2(2, -52)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(1.5, 36)
 shape = SubResource("RectangleShape2D_5gqln")
+
+[node name="ReplaceOnScrewdriver" type="Node2D" parent="."]
+position = Vector2(2, -52)
+script = ExtResource("4_oiywg")
+packed_scene_to_replace_with = ExtResource("5_iskx2")
+require_item_to_interact = true
+possible_items_needed_for_interaction = Array[String](["Screwdriver"])
+destroy_other_on_use = true
+successful_interact_sound = ExtResource("6_m1mxr")

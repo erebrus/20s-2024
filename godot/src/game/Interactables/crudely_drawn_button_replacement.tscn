@@ -1,9 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://epvtpumtqke3"]
+[gd_scene load_steps=9 format=3 uid="uid://epvtpumtqke3"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_xu58i"]
-[ext_resource type="Texture2D" uid="uid://ddyvt10qeb8xq" path="res://assets/gfx/environment/paper_red button.png" id="2_tt4d8"]
-[ext_resource type="Script" path="res://src/game/shadow.gd" id="3_2wf40"]
 [ext_resource type="Script" path="res://src/game/Interactables/make_new_destination_for_crump.gd" id="4_ak522"]
+[ext_resource type="Texture2D" uid="uid://bgwoussjj8xo8" path="res://assets/gfx/environment/paper_red button-sheet.png" id="4_gjro5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucw11"]
+atlas = ExtResource("4_gjro5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhlpf"]
+atlas = ExtResource("4_gjro5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26we0"]
+atlas = ExtResource("4_gjro5")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oligi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucw11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhlpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26we0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
 size = Vector2(65, 65)
@@ -21,16 +49,12 @@ offset_top = -37.0
 offset_right = 38.0
 offset_bottom = 37.0
 
-[node name="Shadow" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-modulate = Color(0, 0, 0, 0.329412)
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(4, 4)
-texture = ExtResource("2_tt4d8")
-script = ExtResource("3_2wf40")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(4, 4)
-texture = ExtResource("2_tt4d8")
+sprite_frames = SubResource("SpriteFrames_oligi")
+autoplay = "default"
+frame = 2
+frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
 

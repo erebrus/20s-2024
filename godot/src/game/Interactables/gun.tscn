@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bftq5wrj50bba"]
+[gd_scene load_steps=5 format=3 uid="uid://bftq5wrj50bba"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_oiags"]
-[ext_resource type="AudioStream" uid="uid://b50qldbpd1sij" path="res://placeholders/sfx/placeholder_gun_shot.mp3" id="2_a32vw"]
 [ext_resource type="Texture2D" uid="uid://v4hduatja3rn" path="res://assets/gfx/environment/gun.png" id="2_l7c60"]
 [ext_resource type="Script" path="res://src/game/shadow.gd" id="3_wghx3"]
 
@@ -12,7 +11,6 @@ size = Vector2(126, 89)
 script = ExtResource("1_oiags")
 interactable_name = "Gun"
 draggable = true
-stop_drag_sound = ExtResource("2_a32vw")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

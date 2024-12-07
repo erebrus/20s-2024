@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://rumvotveqal5"]
+[gd_scene load_steps=12 format=3 uid="uid://rumvotveqal5"]
 
 [ext_resource type="Script" path="res://src/common/globals.gd" id="1_noqpm"]
 [ext_resource type="Script" path="res://src/common/sound_effects_manager.gd" id="3_0r7v4"]
+[ext_resource type="AudioStream" uid="uid://djr15pe6sbiad" path="res://assets/music/temp_music.mp3" id="3_a081b"]
 [ext_resource type="Script" path="res://src/common/music_manager.gd" id="3_h14hn"]
 [ext_resource type="Script" path="res://src/common/tweenable_control.gd" id="3_ijqm3"]
 [ext_resource type="Script" path="res://src/game/time_display.gd" id="3_qpg84"]
@@ -9,10 +10,9 @@
 [ext_resource type="AudioStream" uid="uid://cb37svxdbxptr" path="res://placeholders/sfx/placeholder_default_interact_sound.mp3" id="5_gy0ah"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_q1nu8"]
-stream_count = 3
-stream_0/volume = 0.0
-stream_1/volume = -60.0
-stream_2/volume = 0.0
+stream_count = 1
+stream_0/stream = ExtResource("3_a081b")
+stream_0/volume = -20.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_7m6u2"]
 font_size = 30
@@ -89,7 +89,8 @@ grow_vertical = 2
 theme_override_constants/separation = 95
 alignment = 1
 
-[node name="Label" type="Label" parent="OverlayCanvas/WinDisplay/VBoxContainer"]
+[node name="WinText" type="Label" parent="OverlayCanvas/WinDisplay/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "You Win!"
 label_settings = SubResource("LabelSettings_7ylfa")
@@ -124,12 +125,14 @@ grow_vertical = 2
 theme_override_constants/separation = 95
 alignment = 1
 
-[node name="Label" type="Label" parent="OverlayCanvas/LoseDisplay/VBoxContainer"]
+[node name="LoseText" type="Label" parent="OverlayCanvas/LoseDisplay/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "You Lost!"
 label_settings = SubResource("LabelSettings_7ylfa")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Replay" type="Button" parent="OverlayCanvas/LoseDisplay/VBoxContainer"]
 custom_minimum_size = Vector2(700, 87.35)

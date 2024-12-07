@@ -10,7 +10,7 @@ enum DragState{
 
 const HIGHLIGHT_SCALE:= Vector2(1.1,1.1)
 const PICKED_UP_SCALE:= Vector2(1.2,1.2)
-const CLICK_DELAY_TIME := 0.2
+const CLICK_DELAY_TIME := 0.1
 
 @export var interactable_name := "No name assigned"
 @export var draggable := false
@@ -21,7 +21,7 @@ const CLICK_DELAY_TIME := 0.2
 @export var start_drag_sound: AudioStream
 @export var stop_drag_sound: AudioStream
 
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var sprite_2d = $Sprite2D
 @onready var shadow: Shadow = %Shadow
 @onready var area_2d: Area2D = $Area2D
 @onready var control: Control = $Control

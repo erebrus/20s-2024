@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dei0rh8jgw7ar"]
+[gd_scene load_steps=18 format=3 uid="uid://dei0rh8jgw7ar"]
 
 [ext_resource type="Script" path="res://src/game/bidens_dog.gd" id="1_p3vb3"]
 [ext_resource type="AudioStream" uid="uid://6qkqomucmjfv" path="res://placeholders/sfx/placeholder_dog_chasing_ball.mp3" id="2_4glsp"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://d2x15m7ujoum8" path="res://placeholders/sfx/placeholder_dog_shot.mp3" id="5_0s0sb"]
 [ext_resource type="Texture2D" uid="uid://d1dehqsent2si" path="res://assets/gfx/environment/Dog.png" id="5_4sa5g"]
 [ext_resource type="Texture2D" uid="uid://ddou4nc6ast5i" path="res://assets/gfx/environment/Dog walk.png" id="5_q2mlr"]
+[ext_resource type="Script" path="res://src/game/Crump/gun_cutscene.gd" id="7_7wx5y"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_527w7"]
 atlas = ExtResource("5_4sa5g")
@@ -112,3 +113,10 @@ script = ExtResource("4_2qoc2")
 require_item_to_interact = true
 possible_items_needed_for_interaction = Array[String](["Gun"])
 successful_interact_sound = ExtResource("5_0s0sb")
+
+[node name="GunCutscene" type="Node2D" parent="."]
+script = ExtResource("7_7wx5y")
+cutscene_to_play = 1
+require_item_to_interact = true
+possible_items_needed_for_interaction = Array[String](["Gun"])
+muliply_trump_walk_speed = 0.0

@@ -1,15 +1,40 @@
-[gd_scene load_steps=7 format=3 uid="uid://b40htq4kroxih"]
+[gd_scene load_steps=11 format=3 uid="uid://b40htq4kroxih"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_26er3"]
 [ext_resource type="Texture2D" uid="uid://dv05k1j38v813" path="res://assets/gfx/environment/phone.png" id="2_r323g"]
 [ext_resource type="Script" path="res://src/game/shadow.gd" id="3_ih506"]
 [ext_resource type="Script" path="res://src/game/InteractComponents/trigger_trump_voice_line_on_interact.gd" id="4_prqbm"]
 [ext_resource type="AudioStream" uid="uid://bqsr7l4c8k707" path="res://placeholders/sfx/voice_lines/biden_phone_call_audio.mp3" id="5_jcpkx"]
+[ext_resource type="Texture2D" uid="uid://iot2oontqfw7" path="res://assets/gfx/environment/biden-yap.png" id="6_m1hir"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ga48g"]
 size = Vector2(77, 92)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yebu8"]
+atlas = ExtResource("6_m1hir")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpekd"]
+atlas = ExtResource("6_m1hir")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yec5b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yebu8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpekd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="WhitehousePhone" type="Node2D"]
+texture_filter = 1
+position = Vector2(132, 14)
 script = ExtResource("1_26er3")
 interactable_name = "Whitehouse Phone"
 
@@ -44,3 +69,17 @@ voice_line_to_play = ExtResource("5_jcpkx")
 require_item_to_interact = true
 possible_items_needed_for_interaction = Array[String](["Biden's Phone Number"])
 destroy_other_on_use = true
+
+[node name="Node" type="Node" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node"]
+visible = false
+z_index = 11
+texture_filter = 1
+position = Vector2(108, 636)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_yec5b")
+autoplay = "default"
+frame_progress = 0.0853085
+
+[connection signal="OnInteracted" from="CallBiden" to="Node/AnimatedSprite2D" method="set_visible" binds= [true]]

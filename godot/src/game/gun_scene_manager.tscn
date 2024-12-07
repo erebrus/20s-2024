@@ -17,7 +17,17 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("1_acvq4")
 
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -31.0
+offset_top = -18.0
+offset_right = 239.0
+offset_bottom = 183.0
+scale = Vector2(4, 4)
+color = Color(0, 0, 0, 1)
+
 [node name="Scene1" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = -3.0
 offset_top = 106.0
@@ -54,3 +64,4 @@ stream = ExtResource("6_0na88")
 
 [node name="sfx3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_ljxam")
+volume_db = -7.0

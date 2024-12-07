@@ -1,10 +1,88 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4a58iode7wuh"]
+[gd_scene load_steps=18 format=3 uid="uid://c4a58iode7wuh"]
 
 [ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_b58tq"]
-[ext_resource type="Texture2D" uid="uid://cxndbgaf7x1l5" path="res://assets/gfx/environment/missing red button.png" id="2_mbbf4"]
+[ext_resource type="Texture2D" uid="uid://bwgnu6ownc557" path="res://assets/gfx/environment/red button-sheet.png" id="2_0hekh"]
 [ext_resource type="Script" path="res://src/game/InteractComponents/replace_on_interact.gd" id="5_pc3nw"]
 [ext_resource type="AudioStream" uid="uid://ckeyt4f3tqvst" path="res://assets/sfx/Paper_Crumple_1.mp3" id="5_t4ijj"]
 [ext_resource type="PackedScene" uid="uid://epvtpumtqke3" path="res://src/game/Interactables/crudely_drawn_button_replacement.tscn" id="6_pwjs7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kw1by"]
+atlas = ExtResource("2_0hekh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4podf"]
+atlas = ExtResource("2_0hekh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01x8k"]
+atlas = ExtResource("2_0hekh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ebnk"]
+atlas = ExtResource("2_0hekh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfabr"]
+atlas = ExtResource("2_0hekh")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ne6ei"]
+atlas = ExtResource("2_0hekh")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_riy4w"]
+atlas = ExtResource("2_0hekh")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74mcf"]
+atlas = ExtResource("2_0hekh")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4vav"]
+atlas = ExtResource("2_0hekh")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0k4x0"]
+atlas = ExtResource("2_0hekh")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_owkcp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kw1by")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4podf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01x8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ebnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfabr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ne6ei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_riy4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74mcf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4vav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0k4x0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5gqln"]
 size = Vector2(49, 44)
@@ -21,10 +99,13 @@ offset_top = -30.0
 offset_right = 26.0
 offset_bottom = 10.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -16)
 scale = Vector2(4, 4)
-texture = ExtResource("2_mbbf4")
+sprite_frames = SubResource("SpriteFrames_owkcp")
+autoplay = "default"
+frame = 9
+frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(2, -52)

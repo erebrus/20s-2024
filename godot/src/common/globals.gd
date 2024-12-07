@@ -10,6 +10,7 @@ const GAME_SCENE_PATH = "res://placeholders/test_scene.tscn"
 @onready var lose_display: Control = %LoseDisplay
 @onready var time_display: TimeDisplay = %TimeDisplay
 @onready var dark_background: TweenableControl = $OverlayCanvas/DarkBackground
+@onready var lose_text: Label = %LoseText
 
 
 
@@ -97,8 +98,9 @@ func _init_logger():
 	Logger.info("Logger initialized.")
 
 
-func do_lose():
+func do_lose(lose_text_to_show := "You Lose"):
 	lose_display.visible = true
+	lose_text.text = lose_text_to_show
 	dark_background.tween_to_alpha(1,.3)
 	time_display.visible = false
 	time_display.set_process(false)
