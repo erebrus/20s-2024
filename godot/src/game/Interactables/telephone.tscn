@@ -83,3 +83,4 @@ autoplay = "default"
 frame_progress = 0.0853085
 
 [connection signal="OnInteracted" from="CallBiden" to="Node/AnimatedSprite2D" method="set_visible" binds= [true]]
+[connection signal="OnVoiceLineFinished" from="CallBiden" to="Node/AnimatedSprite2D" method="set_visible" binds= [false]]

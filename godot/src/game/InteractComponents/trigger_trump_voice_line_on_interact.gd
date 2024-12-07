@@ -3,6 +3,8 @@ extends InteractComponent
 
 @export var voice_line_to_play : AudioStream
 
+signal OnVoiceLineFinished
+
 func on_interacted():
 	if voice_line_to_play == null:
 		Logger.warn("No audiostream assigned")
@@ -10,3 +12,7 @@ func on_interacted():
 	Globals.crump.change_voice_line(voice_line_to_play)
 	Logger.info("{x} changed crumps voice line to: {y}".format({"x": parent_interactable.interactable_name,"y": voice_line_to_play}))
 	super.on_interacted()
+	await Globals.crump.OnVoiceLineChanged
+	Globals.crump.OnVoiceLineChanged.connect(
+		func():OnVoiceLineFinished.emit()
+		)

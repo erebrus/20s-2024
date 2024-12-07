@@ -22,6 +22,7 @@ var _audiostream_volume_tween: Tween
 var has_reached_button := false
 var _moveSpeed := 20.0
 
+signal OnVoiceLineChanged
 
 func _ready() -> void:
 	super._ready()
@@ -101,4 +102,5 @@ func change_voice_line(new_stream: AudioStream):
 	voice_player.volume_db = 0
 	voice_player.stream = new_stream
 	voice_player.play()
+	OnVoiceLineChanged.emit()
 	return _audiostream_volume_tween
