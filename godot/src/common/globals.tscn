@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://rumvotveqal5"]
+[gd_scene load_steps=13 format=3 uid="uid://rumvotveqal5"]
 
 [ext_resource type="Script" path="res://src/common/globals.gd" id="1_noqpm"]
 [ext_resource type="Script" path="res://src/common/sound_effects_manager.gd" id="3_0r7v4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://src/common/tweenable_control.gd" id="3_ijqm3"]
 [ext_resource type="Script" path="res://src/game/time_display.gd" id="3_qpg84"]
 [ext_resource type="PackedScene" uid="uid://b575js7drhtbr" path="res://src/common/sound_effect_prototype.tscn" id="4_1qi6w"]
+[ext_resource type="AudioStream" uid="uid://b78c38ofisp24" path="res://assets/music/nathional anthem v2.wav" id="4_7it1x"]
 [ext_resource type="AudioStream" uid="uid://cb37svxdbxptr" path="res://placeholders/sfx/placeholder_default_interact_sound.mp3" id="5_gy0ah"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_q1nu8"]
@@ -32,6 +33,7 @@ stream = SubResource("AudioStreamSynchronized_q1nu8")
 
 [node name="menu_music" type="AudioStreamPlayer" parent="MusicManager"]
 process_mode = 3
+stream = ExtResource("4_7it1x")
 
 [node name="murder_music" type="AudioStreamPlayer" parent="MusicManager"]
 
