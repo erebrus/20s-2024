@@ -78,6 +78,7 @@ func restart_game():
 	Events.OnGameReload.emit()
 	sound_effects_manager.reset_sound_effects()
 	dark_background.tween_to_alpha(0,.5)
+	music_manager.fade_in_game_music()
 	win_display.visible = false
 	lose_display.visible = false
 	time_display.visible = true

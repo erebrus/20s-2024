@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cko6w8bt6ryxp"]
+[gd_scene load_steps=44 format=3 uid="uid://cko6w8bt6ryxp"]
 
 [ext_resource type="Script" path="res://src/game/RonaldCrump.gd" id="1_xpida"]
 [ext_resource type="AudioStream" uid="uid://c7vxjy7c77hp6" path="res://placeholders/sfx/voice_lines/placeholder_normal_button_ending.wav" id="2_fidsb"]
@@ -27,7 +27,18 @@
 [ext_resource type="Texture2D" uid="uid://bwtnqoi1kt7tt" path="res://assets/gfx/characters/grump-button6.png" id="12_k6hia"]
 [ext_resource type="Texture2D" uid="uid://c7q78qfyw44p0" path="res://assets/gfx/characters/grump-button7.png" id="13_nu8gt"]
 [ext_resource type="AudioStream" uid="uid://cu3y2v7dh8veb" path="res://placeholders/sfx/voice_lines/placeholder_trump_bit_by_dog.wav" id="16_g5e7u"]
+[ext_resource type="Texture2D" uid="uid://c3dbvnr3fs1r3" path="res://assets/gfx/characters/button-trump1.png" id="17_orm3m"]
+[ext_resource type="Texture2D" uid="uid://c4emoe3ryaux2" path="res://assets/gfx/characters/button-trump2.png" id="18_m0mr8"]
 [ext_resource type="AudioStream" uid="uid://bv1i7gnx4ecu8" path="res://placeholders/sfx/voice_lines/placeholder_fake_map_used.wav" id="19_27hw6"]
+[ext_resource type="Texture2D" uid="uid://db0u3bux53uwq" path="res://assets/gfx/characters/button-trump3.png" id="19_ayqjs"]
+[ext_resource type="Texture2D" uid="uid://c0xubuavi4w1i" path="res://assets/gfx/characters/button-trump4.png" id="20_c8whr"]
+[ext_resource type="Texture2D" uid="uid://vkg6ej6dffo6" path="res://assets/gfx/characters/button-trump5.png" id="21_n6mwg"]
+[ext_resource type="Texture2D" uid="uid://51668ogp018a" path="res://assets/gfx/characters/button-trump6.png" id="22_8cy76"]
+[ext_resource type="Texture2D" uid="uid://4hwd37m0q4w8" path="res://assets/gfx/characters/button-trump7.png" id="23_7mdtu"]
+[ext_resource type="Texture2D" uid="uid://e6y1adykvohf" path="res://assets/gfx/characters/button-trump8.png" id="24_dbldt"]
+[ext_resource type="Texture2D" uid="uid://ccrwdsk80ggld" path="res://assets/gfx/characters/button-trump9.png" id="25_141qk"]
+[ext_resource type="Texture2D" uid="uid://cr838gr1qnjer" path="res://assets/gfx/characters/button-trump10.png" id="26_4udvo"]
+[ext_resource type="Texture2D" uid="uid://cp1haaxcv841m" path="res://assets/gfx/characters/button-trump11.png" id="27_ourn5"]
 [ext_resource type="Script" path="res://src/game/Crump/gun_cutscene.gd" id="29_r5307"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_14wyr"]
@@ -71,6 +82,44 @@ animations = [{
 "loop": true,
 "name": &"push_button",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_orm3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_m0mr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ayqjs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_c8whr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_n6mwg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_8cy76")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_7mdtu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_dbldt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_141qk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_4udvo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_ourn5")
+}],
+"loop": false,
+"name": &"replace_button",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -119,8 +168,9 @@ interact_sound = SubResource("AudioStreamRandomizer_14wyr")
 position = Vector2(6, -106)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_yvevd")
-animation = &"push_button"
-frame_progress = 0.964999
+animation = &"replace_button"
+frame = 10
+frame_progress = 1.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

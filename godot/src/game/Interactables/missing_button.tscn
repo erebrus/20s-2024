@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://c4a58iode7wuh"]
 
-[ext_resource type="Script" path="res://src/game/Interactable.gd" id="1_b58tq"]
+[ext_resource type="Script" path="res://src/game/Interactables/missing_button.gd" id="1_uxw41"]
 [ext_resource type="Texture2D" uid="uid://bwgnu6ownc557" path="res://assets/gfx/environment/red button-sheet.png" id="2_0hekh"]
 [ext_resource type="Script" path="res://src/game/InteractComponents/replace_on_interact.gd" id="5_pc3nw"]
 [ext_resource type="AudioStream" uid="uid://ckeyt4f3tqvst" path="res://assets/sfx/Paper_Crumple_1.mp3" id="5_t4ijj"]
@@ -88,7 +88,7 @@ animations = [{
 size = Vector2(49, 44)
 
 [node name="MissingButton" type="Node2D" groups=["Button"]]
-script = ExtResource("1_b58tq")
+script = ExtResource("1_uxw41")
 interactable_name = "Missing Button"
 
 [node name="Control" type="Control" parent="."]

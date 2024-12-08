@@ -39,6 +39,9 @@ func _process(delta: float) -> void:
 		path.progress+=speed*delta
 		if path.progress_ratio == 1:
 			on_reached_button()
+			if sprite.animation == "replace_button":
+				set_process(false)
+				return
 			sprite.animation = "push_button"
 			has_reached_button = true
 
@@ -47,7 +50,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	var interacable_hit := area.get_parent()
 
 func on_frame_changed():
-	if sprite.animation == "push_button" and sprite.frame == 5:
+	if sprite.animation == "push_button" and sprite.frame == 5 and is_instance_valid(button):
 		button.interact()
 
 
@@ -62,7 +65,13 @@ func on_reached_button():
 		trigger_win(crudely_drawn_button_line)
 		return
 	if button.interactable_name == "Missing Button" :
-		trigger_lose(missing_button_line)
+		change_voice_line(missing_button_line)		
+		sprite.play("replace_button")
+		await sprite.animation_finished
+		Events.OnButtonRestored.emit()
+		sprite.play("push_button")
+		await get_tree().create_timer(.5).timeout
+		trigger_lose(null)
 		return
 	if button.interactable_name == "Big Beautiful Button" :
 		trigger_lose(normal_button_line)
@@ -82,10 +91,12 @@ func trigger_win(voice_line: AudioStream):
 
 
 func trigger_lose(voice_line: AudioStream):
-	change_voice_line(voice_line)
+	if voice_line:
+		change_voice_line(voice_line)
 	Globals.do_lose()
 	Globals.sound_effects_manager.trigger_nuclear_ending()
-	await get_tree().create_timer(voice_player.stream.get_length()-3).timeout
+	if voice_line:
+		await get_tree().create_timer(voice_player.stream.get_length()-3).timeout
 	camera_shaker.play_shake()
 	await get_tree().create_timer(2).timeout
 	Globals.sound_effects_manager.play_sfx(blast_sound)
